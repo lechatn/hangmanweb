@@ -1,7 +1,9 @@
 package main
 
-import ("../hangman")
+import (
+	"../hangman"
+)
 
-func main(){ 
+func main() {
 	hangman.Menu()
 }
