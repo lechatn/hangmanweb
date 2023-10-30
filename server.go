@@ -1,11 +1,11 @@
-package main
+package web
 
 import (
 	"fmt"
 	"net"
 )
 
-func main() {
+func server() {
 	serverAddr := "127.0.0.1:8080"
 	conn, err := net.Dial("tcp", serverAddr)
 	if err != nil {
