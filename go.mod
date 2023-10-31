@@ -1,4 +1,4 @@
-module server.html
+module hangman-web
 
 go 1.16
 
