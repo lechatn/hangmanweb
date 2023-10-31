@@ -1,25 +1,21 @@
+// websockets.go
 package main
 
 import (
-	"html/template"
-	"net/http"
+	"fmt"
+	"net"
 )
 
-type Page struct {
-	Valeur string
-}
-
-var templates = template.Must(template.ParseFiles("server.html"))
-
 func main() {
-	http.HandleFunc("/home", homeHandler)
-	http.ListenAndServe(":8081", nil)
-}
-
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	p := Page{Valeur: "mon premier essai"}
-	err := templates.ExecuteTemplate(w, "server.html", p)
+	serverAddr := "127.0.0.1:8080"
+	conn, err := net.Dial("tcp", serverAddr)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		fmt.Println("Erreur lors de la connexion au serveur:", err)
+		return
 	}
+	defer conn.Close()
+
+	serverIP, _, _ := net.SplitHostPort(conn.RemoteAddr().String())
+	fmt.Println("Adresse IP du serveur:", serverIP)
+	fmt.Println("Port du serveur:", serverAddr)
 }
