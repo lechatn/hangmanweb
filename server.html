@@ -3,9 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>hangman-web</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <h1>Jeu du Pendu</h1>
+    <div id="hangman"></div>
+    <p id="word"></p>
+    <p id="letters"></p>
+    <form>
+        <label for="letterInput">Entrez une lettre : </label>
+        <input type="text" id="letterInput" maxlenght="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
+        <button type="submit">Devinez</button>
+    </form>
+    <script src="script.js"></script>
 </body>
 </html>
