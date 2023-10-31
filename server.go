@@ -1,20 +1,25 @@
-/*package 
+package main
 
 import (
-	"fmt"
-	"net"
+	"net/http"
+	"html/template"
 )
 
-func server() {
-	serverAddr := "127.0.0.1:8080"
-	conn, err := net.Dial("tcp", serverAddr)
-	if err != nil {
-		fmt.Println("Erreur lors de la connexion au serveur:", err)
-		return
-	}
-	defer conn.Close()
+type Page struct {
+	Valeur string
+}
 
-	serverIP, _, _ := net.SplitHostPort(conn.RemoteAddr().String())
-	fmt.Println("Adresse IP du serveur:", serverIP)
-	fmt.Println("Port du serveur:", serverAddr)
-}*/
+var templates = template.Must(template.ParseFiles("server.html"))
+
+func main() {
+	http.HandleFunc("/home", homeHandler)
+	http.ListenAndServe(":9999", nil)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	p := Page{Valeur: "mon premier essai"}
+	err := templates.ExecuteTemplate(w, "index.html", p)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
