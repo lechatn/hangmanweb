@@ -1,4 +1,4 @@
-package web
+/*package 
 
 import (
 	"fmt"
@@ -17,4 +17,4 @@ func server() {
 	serverIP, _, _ := net.SplitHostPort(conn.RemoteAddr().String())
 	fmt.Println("Adresse IP du serveur:", serverIP)
 	fmt.Println("Port du serveur:", serverAddr)
-}
+}*/
