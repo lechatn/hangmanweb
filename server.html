@@ -3,33 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Pendu</title>
-    <link rel="icon" type="image/png" href="potence.png">
+    <title>hangman-web</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="menu">
-        <h1>Bienvenue au Jeu de Pendu !</h1>
-        <a href="Play" id="startGame">Commencer le jeu!</a>
-    </div>
-    <div id="game" style="display: none;">
-        <h1>Jeu de Pendu</h1>
-        <div id="hangman"></div>
-        <p id="word"></p>
-        <p id="letters"></p>
-        <p id="attemps">Tentatives restantes : <span id="attempsLeft">10</span></p>
-        <form>
-            <label for="letterInput">Entrez une lettre : </label>
-            <input type="text" id="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
-            <button type="submit">Tester</button>
-        </form>
-    </div>
-    <script>
-        document.getElementById('startGame').addEventListener('click', function() {
-            document.querySelector('.menu').style.display = 'none';
-            document.getElementById('game').style.display = 'block';
-        });
-    </script>
+    <h1>Jeu du Pendu</h1>
+    <div id="hangman"></div>
+    <p id="word"></p>
+    <p id="letters"></p>
+    <form>
+        <label for="letterInput">Entrez une lettre : </label>
+        <input type="text" id="letterInput" maxlenght="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
+        <button type="submit">Devinez</button>
+    </form>
     <script src="script.js"></script>
 </body>
 </html>
+
