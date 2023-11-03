@@ -1,28 +1,28 @@
 body {
-    background-color: rgb(111, 196, 238);
+  background-color: rgb(111, 196, 238);
 }
 
 body {
-    font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
-  }
-  
-  h1 {
-    color: #333; /* Couleur du texte */
-  }
-  
-  /* Styling pour le champ de saisie */
-  input[type="text"] {
-    font-family: 'Courier New', monospace; /* Choisir une police de caractères différente pour le champ de saisie */
-    padding: 5px;
-    border: 1px solid #999;
-    border-radius: 3px;
-  }
-  
-  button {
-    background-color: #4CAF50; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte du bouton */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+  font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
+}
+
+h1 {
+  color: #333; /* Couleur du texte */
+}
+
+/* Styling pour le champ de saisie */
+input[type="text"] {
+  font-family: 'Courier New', monospace; /* Choisir une police de caractères différente pour le champ de saisie */
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+button {
+  background-color: #4CAF50; /* Couleur de fond du bouton */
+  color: white; /* Couleur du texte du bouton */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
