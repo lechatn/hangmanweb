@@ -1,55 +1,30 @@
-.menu {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+body {
+  background-color: rgb(111, 196, 238);
+  font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
 }
 
-.start-section {
-  display: flex;
-  align-items: center;
-  margin-top: 20px;
+h1 {
+  color: #333; /* Couleur du texte */
 }
 
-.startButton {
-  padding: 10px 20px;
-  border-radius: 5px;
+input[type="text"] {
+  font-family: 'Courier New', monospace;
+  padding: 5px;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+
+.button-style {
   background-color: #4CAF50;
-  color: #FFF;
+  color: white;
+  padding: 10px 20px;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  margin: 0 10px;
 }
 
-body {
-    background-color: rgb(111, 196, 238);
-}
 
-body {
-    font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
-  }
-  
-  h1 {
-    color: #333; /* Couleur du texte */
-  }
-  
-  /* Styling pour le champ de saisie */
-  input[type="text"] {
-    font-family: 'Courier New', monospace; /* Choisir une police de caractères différente pour le champ de saisie */
-    padding: 5px;
-    border: 1px solid #999;
-    border-radius: 3px;
-  }
-  
-  button {
-    background-color: #4CAF50; /* Couleur de fond du bouton */
-    color: white; /* Couleur du texte du bouton */
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
+
 
 
 
