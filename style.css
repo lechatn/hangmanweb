@@ -1,3 +1,27 @@
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.start-section {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.startButton {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
 body {
     background-color: rgb(111, 196, 238);
 }
@@ -26,4 +50,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
   }
+
+
+
   
