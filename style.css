@@ -1,28 +1,49 @@
 body {
   background-color: rgb(111, 196, 238);
-}
-
-body {
-  font-family: 'Arial', sans-serif; /* Choisir une police de caractères */
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 h1 {
-  color: #333; /* Couleur du texte */
+  color: #333;
 }
 
 /* Styling pour le champ de saisie */
 input[type="text"] {
-  font-family: 'Courier New', monospace; /* Choisir une police de caractères différente pour le champ de saisie */
+  font-family: 'Courier New', monospace;
   padding: 5px;
   border: 1px solid #999;
   border-radius: 3px;
 }
 
 button {
-  background-color: #4CAF50; /* Couleur de fond du bouton */
-  color: white; /* Couleur du texte du bouton */
+  background-color: #4CAF50;
+  color: white;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.menu h1 {
+  margin-bottom: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border-radius: 5px;
 }
