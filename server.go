@@ -8,15 +8,14 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-
+	"github.com/GuillaumeAntier/hangman"
 	"github.com/gorilla/websocket"
 )
 
 // Application constants, defining host, port, and protocol.
 const (
 	connHost = "localhost"
-	connPort = "8081"
-	connPort = "8081"
+	connPort = "8080"
 	connType = "tcp"
 )
 
@@ -45,7 +44,7 @@ func newServer() Server {
 
 func (server *Server) startConnection() {
 	a, err := strconv.Atoi(connPort)
-	fmt.Printf("\nWeb page is displaying on %s:%d, go check it !\nStarting tcp server on %s:%s. This is where your client must be connected.\n", connHost, a-1, connHost, connPort)
+	fmt.Printf("\nWeb page is displaying on %s:%d, go check it !\nStarting tcp server on %s:%s. This is where your client must be connected.\n", connHost, a, connHost, connPort)
 	//Listen connection
 	//a := strconv.Itoa(connPort)
 	l, err := net.Listen(connType, connHost+":"+connPort)
@@ -125,11 +124,11 @@ func webSocket() {
 
 	})
 
-	//fs := http.FileServer(http.Dir("./")) //Associate dir to make js or css file work
-	//mux.Handle("/", http.StripPrefix("/", fs))
+	staticDir := http.FileServer(http.Dir("static"))
+	mux.Handle("/assets/", http.StripPrefix("/assets/", staticDir))
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "server.html") //associate page
+		http.ServeFile(w, r, "index.html") //associate page
 	})
 
 	a, _ := strconv.Atoi(connPort)
