@@ -5,42 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu de Pendu</title>
     <link rel="icon" type="image/png" href="potence.png">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #6FC4EE;
-        }
-        .menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .menu h1 {
-            margin-bottom: 20px;
-        }
-        .menu a {
-            text-decoration: none;
-            color: #FFF;
-            background-color: #4CAF50;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-    <div class="menu">
+    <div id="menu" class="menu">
         <h1>Bienvenue au Jeu de Pendu !</h1>
-        <p>Choisissez votre langue :</p>
-        <select id="languageSelect">
-            <option value="fr">Français</option>
-            <option value="en">English</option>
-        </select>
         <a href="#" id="startGame">Commencer le jeu!</a>
     </div>
 
@@ -63,6 +32,8 @@
             document.getElementById('game').style.display = 'block';
         });
     </script>
-    <script src="script.js"></script>
+
 </body>
 </html>
+
+
