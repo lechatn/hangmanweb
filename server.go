@@ -8,7 +8,7 @@ import (
 func main() {
 
     http.HandleFunc("/", index)
-	http.HandleFunc("/test", test)
+	http.HandleFunc("/game", game)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
     http.ListenAndServe(":8080", nil)
 }
@@ -21,10 +21,10 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tIndex.Execute(w, nil)
 }
 
-func test(w http.ResponseWriter, r *http.Request) {
-	tTest, err := template.ParseFiles("test.html")
+func game(w http.ResponseWriter, r *http.Request) {
+	tGame, err := template.ParseFiles("game.html")
 	if err != nil {
 		panic(err)
 	}
-	tTest.Execute(w, nil)
+	tGame.Execute(w, nil)
 }
