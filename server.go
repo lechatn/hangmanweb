@@ -1,5 +1,5 @@
 // websockets.go
-package main
+/*package main
 
 import (
 	"bufio"
@@ -8,13 +8,14 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"github.com/GuillaumeAntier/hangman"
+
 	"github.com/gorilla/websocket"
 )
 
 // Application constants, defining host, port, and protocol.
 const (
 	connHost = "localhost"
+	connPort = "8081"
 	connPort = "8081"
 	connType = "tcp"
 )
