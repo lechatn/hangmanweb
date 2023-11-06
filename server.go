@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	//"github.com/GuillaumeAntier/hangman"
 	"github.com/gorilla/websocket"
 )
 
@@ -127,7 +128,7 @@ func webSocket() {
 	mux.Handle("/assets/", http.StripPrefix("/assets/", staticDir))
 
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "server.html") //associate page
+		http.ServeFile(w, r, "index.html") //associate page
 	})
 
 	a, _ := strconv.Atoi(connPort)

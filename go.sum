@@ -1,2 +1,4 @@
+github.com/GuillaumeAntier/hangman v0.0.0-20231106075517-a23af08c4dfb h1:UytmEqLWAmGwNJY2PtitlBgc84W0DrtiKfhCB6dNmKI=
+github.com/GuillaumeAntier/hangman v0.0.0-20231106075517-a23af08c4dfb/go.mod h1:Pa9eyFpYGdGTniigtSXFzChLqwhaQZkcosAsN3NJcis=
 github.com/gorilla/websocket v1.5.0 h1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc=
 github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
