@@ -1,5 +1,5 @@
 // websockets.go
-package main
+/*package main
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"github.com/GuillaumeAntier/hangman"
+
 	"github.com/gorilla/websocket"
 )
 
@@ -141,6 +141,127 @@ func main() {
 	// 	fmt.Println("The server needs to know its host and its port to start.\nUsage: go run server.go [host] [port].")
 	// 	return
 	// }
+	go webSocket()
+	newServer()
+}*/
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"net"
+	"net/http"
+	"os"
+	"strconv"
+
+	"github.com/gorilla/websocket"
+)
+
+const (
+	connHost  = "localhost"
+	connPort  = "8081"
+	connType  = "tcp"
+	staticDir = "static" // Répertoire contenant les fichiers statiques
+)
+
+var upgrader = websocket.Upgrader{
+	ReadBufferSize:  1024,
+	WriteBufferSize: 1024,
+}
+
+var c = make(chan string)
+
+type Server struct {
+	Listener   net.Listener
+	connection [32]net.Conn
+}
+
+func newServer() Server {
+	var server Server
+	server.connection = [32]net.Conn{}
+	server.run()
+	return server
+}
+
+func (server *Server) startConnection() {
+	a, err := strconv.Atoi(connPort)
+	fmt.Printf("\nWeb page is displaying on %s:%d, go check it!\nStarting tcp server on %s:%s. This is where your client must be connected.\n", connHost, a-1, connHost, connPort)
+	l, err := net.Listen(connType, connHost+":"+connPort)
+	server.error(err)
+	server.Listener = l
+}
+
+func (server *Server) error(err error) {
+	if err != nil {
+		fmt.Println("Error listening:", err.Error())
+		os.Exit(1)
+	}
+}
+
+func (server *Server) addClient(connection net.Conn, index int) {
+	server.connection[index] = connection
+	server.connection[index].Write([]byte("You can start the discussion with guests ...\n\n"))
+	server.receive(server.connection[index], index)
+}
+
+func (server *Server) receive(connection net.Conn, index int) {
+	buf := bufio.NewReader(connection)
+	for {
+		if message, err := buf.ReadString('\n'); err != nil {
+			fmt.Println("Unable to receive message !", err)
+			break
+		} else {
+			fmt.Println(message)
+			c <- message
+		}
+	}
+}
+
+func (server *Server) run() {
+	index := 0
+	server.startConnection()
+	for {
+		connection, err := server.Listener.Accept()
+		server.error(err)
+		fmt.Println("connection : ", connection.RemoteAddr())
+		go server.addClient(connection, index)
+		index++
+	}
+}
+
+func webSocket() {
+	mux := http.NewServeMux()
+	message := ""
+	mux.HandleFunc("/msg", func(w http.ResponseWriter, r *http.Request) {
+		conn, err := upgrader.Upgrade(w, r, nil)
+		if err != nil {
+			println(err)
+		}
+		for {
+			message = <-c
+			msg := []byte(message)
+			fmt.Printf("%s sent: %s\n", conn.RemoteAddr(), msg)
+			if err := conn.WriteMessage(websocket.TextMessage, msg); err != nil {
+				println("Can't write the message", err)
+				return
+			}
+		}
+	})
+
+	// Servir les fichiers statiques
+	fs := http.FileServer(http.Dir(staticDir))
+	mux.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "server.html")
+	})
+
+	a, _ := strconv.Atoi(connPort)
+	a--
+	http.ListenAndServe(":"+strconv.Itoa(a), mux)
+}
+
+func main() {
 	go webSocket()
 	newServer()
 }
