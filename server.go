@@ -1,5 +1,5 @@
 // websockets.go
-/*package main
+package main
 
 import (
 	"bufio"
@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	"github.com/GuillaumeAntier/hangman"
+
 	"github.com/gorilla/websocket"
 )
 
