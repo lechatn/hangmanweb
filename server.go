@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
-	//"github.com/GuillaumeAntier/hangman"
+	"github.com/GuillaumeAntier/hangman"
 	"github.com/gorilla/websocket"
 )
 
