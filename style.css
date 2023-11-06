@@ -26,6 +26,30 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #6FC4EE;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.menu h1 {
+  margin-bottom: 20px;
+}
+.menu a {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
 
 
 
