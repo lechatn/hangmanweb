@@ -8,10 +8,15 @@ import (
 )
 
 func main() {
+	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
 
 	http.HandleFunc("/", index)
-	http.HandleFunc("/game", game)
-	http.HandleFunc("/letter", handleLetter) // Définissez une route distincte pour la gestion de la lettre
+	http.HandleFunc("/game", func(w http.ResponseWriter, r *http.Request) {
+		game(w, r, word)
+	})
+	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
+		game(w, r, word)
+	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
@@ -24,28 +29,17 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tIndex.Execute(w, nil)
 }
 
-func game(w http.ResponseWriter, r *http.Request) {
+func game(w http.ResponseWriter, r *http.Request, word string) {
 	tGame, err := template.ParseFiles("game.html")
 	if err != nil {
 		panic(err)
 	}
 	// Créez une variable dynamique en Go
-	Dyna2 := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
+	Dyna2 := word
 	// Générez le contenu HTML avec la variable dynamique
 	htmlContent := fmt.Sprintf("%s", Dyna2)
 	data := struct{ Res string }{htmlContent}
 	// Écrivez la réponse HTML dans la sortie HTTP
 	tGame.Execute(w, data)
 
-}
-
-func handleLetter(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost {
-		r.ParseForm()
-		lettre := r.PostFormValue("letterInput") // Utilisez "letterInput" au lieu de "test"
-		// Insérez ici le code de traitement de la lettre.
-		fmt.Fprintf(w, "La lettre saisie est : %s", lettre)
-	} else {
-		// Générez le formulaire ou redirigez si nécessaire.
-	}
 }
