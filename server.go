@@ -28,3 +28,4 @@ func game(w http.ResponseWriter, r *http.Request) {
 	}
 	tGame.Execute(w, nil)
 }
+
