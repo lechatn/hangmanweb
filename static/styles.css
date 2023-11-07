@@ -1,3 +1,11 @@
+#home {
+  background-image: url('./static/fondecran.png'); /* Chemin vers votre image */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  /* Autres styles si nécessaires */
+}
+
 body {
   background-color: rgb(111, 196, 238);
   font-family: 'Arial', sans-serif;
@@ -114,7 +122,7 @@ button:hover, .menu a:hover {
   position: absolute;
   width: 100%;
   height: 50px; /* Ajustez la hauteur de la bande grise selon vos besoins */
-  background-color: #ccc; /* Couleur grise */
+  background-color: #4CAF50; /* Couleur grise */
   bottom: 0;
 }
 
