@@ -10,6 +10,8 @@
 <body>
     <div id="game" >
         <h1>Jeu de Pendu</h1>
+        <h2>Voici le mot à trouver : </h2>
+        <p>{{.Res}}</p>
         <br>
         <p id="attempts">Tentatives restantes : <span id="attemptsLeft">10</span></p>
         <form action="/letter" method="post">
