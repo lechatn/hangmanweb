@@ -4,6 +4,7 @@ import (
     "net/http"
 	"text/template"
 	"fmt"
+	"github.com/GuillaumeAntier/hangman"
 )
 
 func main() {
@@ -28,6 +29,19 @@ func game(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+	 // Créez une variable dynamique en Go
+	 Dyna1:= "Trouvez le mot suivant : "
+	 Dyna2 := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
+
+	 // Générez le contenu HTML avec la variable dynamique
+	 htmlContent := fmt.Sprintf("<html><body><div id=\"game\"><p>%s</p></div></body></html>", Dyna1)
+	 htmlContent2 := fmt.Sprintf("<html><body><div id=\"game\"><p>%s</p></div></body></html>", Dyna2)
+ 
+	 // Écrivez la réponse HTML dans la sortie HTTP
+	 w.Header().Set("Content-Type", "text/html")
+	 w.WriteHeader(http.StatusOK)
+	 w.Write([]byte(htmlContent))
+	 w.Write([]byte(htmlContent2))
 	tGame.Execute(w, nil)
 	
 }
