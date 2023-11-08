@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/GuillaumeAntier/hangman"
+	"github.com/lechatn/hangman"
 	"net/http"
 	"text/template"
 )
