@@ -9,13 +9,13 @@ import (
 
 func main() {
 	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
-
+	life := 10
 	http.HandleFunc("/", index)
 	http.HandleFunc("/game", func(w http.ResponseWriter, r *http.Request) {
 		game(w, r, word)
 	})
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
-		letter(w, r, word)
+		letter(w, r, word, &life)
 	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
@@ -52,7 +52,7 @@ func game(w http.ResponseWriter, r *http.Request, word string) {
 
 }
 
-func letter(w http.ResponseWriter, r *http.Request, word string) {
+func letter(w http.ResponseWriter, r *http.Request, word string, life *int) {
 	tletter, err := template.ParseFiles("game.html")
 	if err != nil {
 		panic(err)
@@ -61,9 +61,8 @@ func letter(w http.ResponseWriter, r *http.Request, word string) {
 	Dyna2 := word
 	// Générez le contenu HTML avec la variable dynamique
 	htmlContent := fmt.Sprintf("%s", Dyna2)
-	life := 10
-	life --
-	htmlContent2 :=fmt.Sprintf("%d", life)
+	*life = *life - 1
+	htmlContent2 :=fmt.Sprintf("%d", *life)
 	data := struct{
 		Res  string
 		Life string
