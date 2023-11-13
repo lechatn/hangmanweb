@@ -5,47 +5,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman Game</title>
-   <link rel="stylesheet" type="text/css" href="../static/styles.css">
+   <link rel="stylesheet" href="./static/styles.css">
 </head>
 <body>
-    <div class="game modal">
-        <div class=""content>
-            <h4>Game Over</h4>
-            <p>
-            <img src="lost.gif" alt="Photo">
-            </p>
-            <p>The correct word was: <b></p>
-            <button class="play-again">Play Again</button>
-        </div>
-    </div>
-    <div class="container">
-          <img src="" alt="">
-          <img src="images/hangman-0.svg" alt="../images/hangman-0">
+  <div id="game" >
           <h1>hangman game</h1>
-    </div>
-      <div class="game box">
-        <ul class="word-display">
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-        <li class="lettre"></li>
-      </div>
-            <h4>
-              the game start here welcome into ours hangman web let start to play it
-            </b>  
-            </h4>
-            <h4 class="guesses text">
-                incorrect guesses:
-                <b>0 / 10</b>  
-              </h4>
-         </div>
+          <p>Find the hidden word - Enter one letter at a time</p>
+          <div class="jeu-contenant">
+              <svg height="250" width="200" class=figure-contenant>
+                   <!--support-->
+                   <line x1="20"  y1="220" x2="100" y2="220" />
+                   <line x1="60"  y1="20" x2="60" y2="230" />
+                   <line x1="60"  y1="20" x2="140" y2="20" />
+                   <line x1="140"  y1="20" x2="140" y2="50" />
+                   
+                  <!--tete-->
+                   <circle cx="140" cy="70" r="20" class="figure-partie"/>
+              
+                  <!--corps-->
+                   <line x1="140"  y1="90" x2="140" y2="150" class="figure-partie"/>
+                   <!--bras-->
+                   <line x1="140"  y1="120" x2="120" y2="100" class="figure-partie"/>
+                   <line x1="140"  y1="120" x2="160" y2="100" class="figure-partie"/>
+                   <!--jambes-->
+                   <line x1="140"  y1="150" x2="120" y2="180" class="figure-partie"/>
+                   <line x1="140"  y1="150" x2="160" y2="180" class="figure-partie"/>
+                  </svg>
+
+                 <div class="mauvaises-lettres-contenant">
+                     wrong letter
+                      <div id="mauvaises-lettres">ex. a, f,</div>
+                 </div>
+                 <!--message final-->
+                 <div class="popup-contenant" id="popup-contenant" >
+                      <div class="popup" >
+                        <h2 id="message-final">bravo, tu as gagné</h2>
+        <p> incorrect guesses : {{.Life}}</p>   <b>0 / 10</b> 
+        <form action="/letter" method="post">
+            <label for="letterInput">Entrez une lettre : </label>
+            <input type="text" id="letterInput" name="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
+            <button type="submit">Tester</button> <button id="play-bouton">Rejouer</button>
+
+             <!--notification-->
+            <div class="notification-contenant" id="notification-contenant">
+              <p>you have already tried this letter</p> 
+            </div>
+            <p>The correct word was : </p>
+  </div>      
+        </form>
 <body>
 <html>

@@ -1,16 +1,27 @@
 body {
-  background-color: rgb(111, 196, 238);
+  background-color: rgb(238, 196, 111);
   font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   margin: 0;
   background-color: #6FC4EE;
+  overflow: hidden;
 }
 
 h1 {
   color: #333;
+  font-size: 50px;
+  font-family: 'shadows into light', cursive ;
+
+}
+.figure-contenant {
+  stroke: #FFF;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  fill: transparent;
+  height: 30vh;
 }
 
 /* Styling pour le champ de saisie */
@@ -39,7 +50,9 @@ button {
 
 .menu h1 {
   margin-bottom: 20px;
+ 
 }
+
 
 .menu a {
   text-decoration: none;
