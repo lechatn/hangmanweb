@@ -19,12 +19,12 @@ h1 {
 .jeu-contenant {
   padding: 20px 30px;
   margin: auto;
-  height: 300px;
+  height: 250px;
   width: 450px;
 }
 .figure-contenant {
   stroke: #FFF;
-  stroke-width: 4px;
+  stroke-width: 5px;
   stroke-linecap: round;
   fill: transparent;
   height: 30vh;
@@ -47,6 +47,67 @@ h1 {
 .mauvaises-lettres-contenant span {
   font-size: 24px;
 }
+.mot {
+  display: flex;
+  position: absolute;
+  bottom: 10;
+  left: 50%;
+  transform: translate(-50%);
+}
+.lettre {
+  border-bottom: 3px solid #110d0d;
+  display: inline-flex;
+  font-size: 30px;
+  align-items: center;
+  margin: 0 3px;
+  height: 30px;
+  width: 20px;
+}
+.popup-contenant {
+  background-color: black(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.popup {
+background-color: #d8dbe0;
+border-radius: 5px;
+box-shadow: 0 10px 10px 5px;
+padding: 20px;
+text-align: center;
+}
+.popup-button {
+  cursor: pointer;
+  background-color: #FFF;
+  column-rule: #354961;
+  border: 0;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.popup-button:active {
+  transform: scale(0.99);
+}
+.popup-button:focus {
+  outline: 0;
+}
+.notification-contenant {
+ background-color: rgba(0, 0, 0, 0.3);
+ border-radius: 10px 10px 0 0;
+ padding: 15px 20px;
+ position: absolute;
+ bottom: -80px;
+ transition: transform 0.3 ease-in-out;
+}
+.notification-contenant .afficher {
+  transform: translate(-80px);
+}
+
 
 /* Styling pour le champ de saisie */
 input[type="text"] {

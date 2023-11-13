@@ -9,12 +9,12 @@
 </head>
 <body>
   <div id="game" >
-          <h1>hangman game</h1>
-          <p>Find the hidden word - Enter one letter at a time</p>
+      <h1>hangman game</h1>
+      <p>Find the hidden word - Enter one letter at a time</p>
           <div class="jeu-contenant">
-              <svg height="250" width="200" class=figure-contenant>
+                <svg height="250" width="200" class=figure-contenant>
                    <!--support-->
-                   <line x1="20"  y1="220" x2="100" y2="220" />
+                   <line x1="30"  y1="220" x2="100" y2="220" />
                    <line x1="60"  y1="20" x2="60" y2="230" />
                    <line x1="60"  y1="20" x2="140" y2="20" />
                    <line x1="140"  y1="20" x2="140" y2="50" />
@@ -30,22 +30,26 @@
                    <!--jambes-->
                    <line x1="140"  y1="150" x2="120" y2="180" class="figure-partie"/>
                    <line x1="140"  y1="150" x2="160" y2="180" class="figure-partie"/>
-                  </svg>
-                  <br>
-                  <br>
-                 <div class="mauvaises-lettres-contenant">
+              </svg></div>
+            <br>
+
+            <div class="mauvaises-lettres-contenant"></div>
                      <p>wrong letter</p>
-                      <div id="mauvaises-lettres"><span></span></div>
-                 </div>
+                      <div id="mauvaises-lettres"></div>
+          <div id="mot" id="mot"></div>
+            
                  <!--message final-->
-                 <div class="popup-contenant" id="popup-contenant" >
+            <div class="popup-contenant" id="popup-contenant" >
                       <div class="popup" >
                         <h2 id="message-final">bravo, tu as gagné</h2>
+                        <button id="play-bouton">Rejouer</button>
+                      </div>
+            </div>
         <p> incorrect guesses : {{.Life}}</p>   <b>0 / 10</b> 
         <form action="/letter" method="post">
             <label for="letterInput">Entrez une lettre : </label>
             <input type="text" id="letterInput" name="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
-            <button type="submit">Tester</button> <button id="play-bouton">Rejouer</button>
+            <button type="submit">Tester</button> 
 
              <!--notification-->
             <div class="notification-contenant" id="notification-contenant">
