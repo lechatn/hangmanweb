@@ -14,6 +14,9 @@ func main() {
 	http.HandleFunc("/game", func(w http.ResponseWriter, r *http.Request) {
 		game(w, r, word)
 	})
+	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
+		regle(w, r)
+	})
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
 		letter(w, r, word)
 	})
@@ -50,6 +53,14 @@ func game(w http.ResponseWriter, r *http.Request, word string) {
 	// Écrivez la réponse HTML dans la sortie HTTP
 	tGame.Execute(w, data)
 
+}
+
+func regle(w http.ResponseWriter, r *http.Request) {
+	tIndex, err := template.ParseFiles("regle.html")
+	if err != nil {
+		panic(err)
+	}
+	tIndex.Execute(w, nil)
 }
 
 func letter(w http.ResponseWriter, r *http.Request, word string) {
