@@ -23,6 +23,9 @@ func main() {
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
 		Display, life, IndexHangman, Failed_letter = letter(w, r, word, life, Display, IndexHangman, Failed_letter)
 	})
+	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
+		regle(w, r)
+	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
@@ -112,4 +115,12 @@ func win(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	tWin.Execute(w, nil)
+}
+
+func regle(w http.ResponseWriter, r *http.Request) {	
+	tRegles, err := template.ParseFiles("regles.html")
+	if err != nil {
+		panic(err)
+	}
+	tRegles.Execute(w, nil)
 }
