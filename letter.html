@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu de Pendu</title>
+    <link rel="icon" type="image/png" href="./static/potence.png">
+    <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+    <div id="game" >
+        <h1>Jeu de Pendu</h1>
+        <h2>Voici le mot à trouver : </h2>
+        <p>{{.Display}}</p>
+        <br>
+        <p >Nombre de vies restantes : {{.Life}}</p>
+        <p >Lettres que vous avez déja tenté : {{.Failed_letter}}</p>
+        <p>{{.IndexHangman}}</p>
+        <form action="/letter" method="post">
+            <label for="letterInput">Entrez une lettre : </label>
+            <input type="text" id="letterInput" name="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required>
+            <button type="submit">Tester</button>
+        </form>
+    </div>
+</body>
+</html>
