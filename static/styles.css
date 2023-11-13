@@ -35,6 +35,12 @@ button, .menu a {
 button:hover, .menu a:hover {
   transform: scale(1.1); /* Redimensionne le bouton */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre portée */
+  transition: all 0.3s ease; /* Animation au survol */
+}
+
+button:hover, .menu a:hover {
+  transform: scale(1.1); /* Redimensionne le bouton */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre portée */
 }
 
 .menu {
@@ -139,24 +145,3 @@ button:hover, .menu a:hover {
   line-height: 1.5;
   margin-top: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  

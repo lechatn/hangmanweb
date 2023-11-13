@@ -4,10 +4,14 @@ import (
 	"fmt"
 	"github.com/GuillaumeAntier/hangman"
 	"net/http"
+	"fmt"
+	"github.com/GuillaumeAntier/hangman"
+	"net/http"
 	"text/template"
 )
 
 func main() {
+	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
 	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
 
 	http.HandleFunc("/", index)
@@ -22,6 +26,7 @@ func main() {
 	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8080", nil)
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -32,6 +37,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tIndex.Execute(w, nil)
 }
 
+func game(w http.ResponseWriter, r *http.Request, word string) {
 func game(w http.ResponseWriter, r *http.Request, word string) {
 	tGame, err := template.ParseFiles("game.html")
 	if err != nil {
