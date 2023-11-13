@@ -35,12 +35,6 @@ button, .menu a {
 button:hover, .menu a:hover {
   transform: scale(1.1); /* Redimensionne le bouton */
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre portée */
-  transition: all 0.3s ease; /* Animation au survol */
-}
-
-button:hover, .menu a:hover {
-  transform: scale(1.1); /* Redimensionne le bouton */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre portée */
 }
 
 .menu {
@@ -68,9 +62,9 @@ button:hover, .menu a:hover {
   top: 20px; /* Ajustez la position par rapport au haut de la page selon vos besoins */
   left: 20px; /* Ajustez la position par rapport à la gauche de la page selon vos besoins */
 }
-
 /* Styles pour le profil en haut */
 /* Styles pour le cercle et l'image de profil */
+
 .circle {
   width: 50px; /* Ajustez la taille du cercle selon vos besoins */
   height: 50px; /* Ajustez la taille du cercle selon vos besoins */
@@ -125,7 +119,6 @@ button:hover, .menu a:hover {
   background-color: #4CAF50; /* Couleur grise */
   bottom: 0;
 }
-
 /* New styles for the hangman.png image */
 .menu img {
   border: 5px solid #020d13; /* Adjust border properties */

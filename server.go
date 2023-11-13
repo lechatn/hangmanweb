@@ -2,30 +2,31 @@ package main
 
 import (
 	"fmt"
-	"github.com/GuillaumeAntier/hangman"
+	"github.com/lechatn/hangman"
+	"io/ioutil"
 	"net/http"
-	"fmt"
-	"github.com/GuillaumeAntier/hangman"
-	"net/http"
+	"strings"
 	"text/template"
 )
 
 func main() {
-	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
-	word := hangman.DisplayWord(hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt")))
-
+	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt"))
+	print(word, "\n")
+	Display := hangman.DisplayWord(word)
+	IndexHangman := 0
+	Failed_letter := ""
+	life := 10
 	http.HandleFunc("/", index)
 	http.HandleFunc("/game", func(w http.ResponseWriter, r *http.Request) {
-		game(w, r, word)
+		game(w, r, Display, life)
+	})
+	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
+		Display, life, IndexHangman, Failed_letter = letter(w, r, word, life, Display, IndexHangman, Failed_letter)
 	})
 	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
 		regle(w, r)
 	})
-	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
-		letter(w, r, word)
-	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
-	http.ListenAndServe(":8080", nil)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -37,59 +38,89 @@ func index(w http.ResponseWriter, r *http.Request) {
 	tIndex.Execute(w, nil)
 }
 
-func game(w http.ResponseWriter, r *http.Request, word string) {
-func game(w http.ResponseWriter, r *http.Request, word string) {
+func game(w http.ResponseWriter, r *http.Request, Display string, life int) {
 	tGame, err := template.ParseFiles("game.html")
 	if err != nil {
 		panic(err)
 	}
 	// Créez une variable dynamique en Go
-	Dyna2 := word
+	Dyna := Display
 	// Générez le contenu HTML avec la variable dynamique
-	htmlContent := fmt.Sprintf("%s", Dyna2)
-	life := 10
-	htmlContent2 :=fmt.Sprintf("%d", life)
-	data := struct{
-		Res  string
-		Life string
+	htmlContent := fmt.Sprintf("%s", Dyna)
+	htmlContent2 := fmt.Sprintf("%d", life)
+	data := struct {
+		Display string
+		Life    string
 	}{
-		Res:  htmlContent,
-		Life: htmlContent2,
+		Display: htmlContent,
+		Life:    htmlContent2,
 	}
 	// Écrivez la réponse HTML dans la sortie HTTP
 	tGame.Execute(w, data)
 
 }
 
-func regle(w http.ResponseWriter, r *http.Request) {
-	tIndex, err := template.ParseFiles("regle.html")
-	if err != nil {
-		panic(err)
-	}
-	tIndex.Execute(w, nil)
-}
-
-func letter(w http.ResponseWriter, r *http.Request, word string) {
-	tletter, err := template.ParseFiles("game.html")
+func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, IndexHangman int, Failed_letter string) (string, int, int, string) {
+	tletter, err := template.ParseFiles("letter.html")
 	if err != nil {
 		panic(err)
 	}
 	// Créez une variable dynamique en Go
-	Dyna2 := word
 	// Générez le contenu HTML avec la variable dynamique
-	htmlContent := fmt.Sprintf("%s", Dyna2)
-	life := 10
-	life --
-	htmlContent2 :=fmt.Sprintf("%d", life)
-	data := struct{
-		Res  string
-		Life string
+
+	// Écrivez la réponse HTML dans la sortie HTTP
+	letter := r.PostFormValue("letterInput")
+	file, err := ioutil.ReadFile("affichage/hangman.txt")
+	Display, life, IndexHangman, Failed_letter = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
+	htmlContent := fmt.Sprintf("%s", Display)
+	htmlContent2 := fmt.Sprintf("%d", life)
+	htmlContent3 := fmt.Sprintf("%s", word)
+	htmlContent4 := ""
+	htmlContent5 := fmt.Sprintf("%s", Failed_letter)
+	lines := strings.Split(string(file), "\n") // We cut the file hangman.txt line by line
+	if life == 10 {
+		for i := 0; i < 7; i++ {
+			htmlContent4 = htmlContent4 + lines[i] + "<br>"
+		}
+	} else {
+		for i := IndexHangman; i < IndexHangman+7; i++ {
+			htmlContent4 = htmlContent4 + lines[i] + "<br>"
+		}
+	}
+	if word == Display {
+		win(w, r)
+		return Display, life, IndexHangman, Failed_letter
+	}
+	data := struct {
+		Display       string
+		Life          string
+		Word          string
+		IndexHangman  string
+		Failed_letter string
 	}{
-		Res:  htmlContent,
-		Life: htmlContent2,
+		Display:       htmlContent,
+		Life:          htmlContent2,
+		Word:          htmlContent3,
+		IndexHangman:  htmlContent4,
+		Failed_letter: htmlContent5,
 	}
 	tletter.Execute(w, data)
-	// Écrivez la réponse HTML dans la sortie HTTP
-    //lettre := r.PostFormValue("letterInput")
 
+	return Display, life, IndexHangman, Failed_letter
+}
+
+func win(w http.ResponseWriter, r *http.Request) {
+	tWin, err := template.ParseFiles("win.html")
+	if err != nil {
+		panic(err)
+	}
+	tWin.Execute(w, nil)
+}
+
+func regle(w http.ResponseWriter, r *http.Request) {	
+	tRegles, err := template.ParseFiles("regle.html")
+	if err != nil {
+		panic(err)
+	}
+	tRegles.Execute(w, nil)
 }
