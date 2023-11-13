@@ -16,12 +16,36 @@ h1 {
   font-family: 'shadows into light', cursive ;
 
 }
+.jeu-contenant {
+  padding: 20px 30px;
+  margin: auto;
+  height: 300px;
+  width: 450px;
+}
 .figure-contenant {
   stroke: #FFF;
   stroke-width: 4px;
   stroke-linecap: round;
   fill: transparent;
   height: 30vh;
+}
+.figure-partie {
+  display: none;
+
+}
+.mauvaises-lettres-contenant {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.mauvaises-lettres-contenant {
+  margin: 0 0 5px;
+}
+.mauvaises-lettres-contenant span {
+  font-size: 24px;
 }
 
 /* Styling pour le champ de saisie */
