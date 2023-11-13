@@ -1,13 +1,5 @@
-#home {
-  background-image: url('./static/fondecran.png'); /* Chemin vers votre image */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  /* Autres styles si nécessaires */
-}
-
 body {
-  background-color: rgb(111, 196, 238);
+  background-color: rgb(111, 238, 130);
   font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
