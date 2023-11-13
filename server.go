@@ -118,7 +118,7 @@ func win(w http.ResponseWriter, r *http.Request) {
 }
 
 func regle(w http.ResponseWriter, r *http.Request) {	
-	tRegles, err := template.ParseFiles("regles.html")
+	tRegles, err := template.ParseFiles("regle.html")
 	if err != nil {
 		panic(err)
 	}
