@@ -170,3 +170,35 @@ text-align: center;
   transform: scale(1.1);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+a.button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: white;
+  padding: 6px 12px; /* Ajuster la taille en modifiant la valeur de padding */
+  margin-right: 10px; /* Ajouter de l'espace entre les boutons en modifiant la valeur de margin-right */
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animation au survol */
+  text-decoration: none; /* Supprimer la soulignement par défaut sur les liens */
+}
+
+
+a.button:hover {
+  background-color: #45a049;
+}
+
+a#Q.button {
+  margin-left: 10px; /* Ajuster la valeur selon vos préférences */
+}
+
+a#W.button {
+  margin-left: 20px; /* Ajuster la valeur selon vos préférences */
+}
+
+.grayed {
+  background-color: #ddd; /* Couleur de fond grise */
+  color: #999; /* Couleur du texte grise */
+  cursor: not-allowed; /* Curseur non autorisé pour indiquer que le bouton n'est pas cliquable */
+}

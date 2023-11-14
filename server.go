@@ -16,53 +16,56 @@ func main() {
 	var display string
 	var Failed_letter string
 	var game_mode string
+	var name_mode string
 
 	//Define the different routes
-	http.HandleFunc("/", index)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		Failed_letter = index(w, r)
+	})
 	http.HandleFunc("/gamemode", func(w http.ResponseWriter, r *http.Request) {
 		gamemode(w, r)
 	})
 	http.HandleFunc("/gamemode_french", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_french(w, r)
+		display, life, word, game_mode,name_mode = gamemode_french(w, r)
 	})
 	http.HandleFunc("/gamemode_english", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_english(w, r)
+		display, life, word, game_mode,name_mode = gamemode_english(w, r)
 	})
 	http.HandleFunc("/gamemode_german", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_german(w, r)
+		display, life, word, game_mode,name_mode = gamemode_german(w, r)
 	})
 	http.HandleFunc("/gamemode_drinks", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_drinks(w, r)
+		display, life, word, game_mode,name_mode = gamemode_drinks(w, r)
 	})
 	http.HandleFunc("/gamemode_capitals", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_capitals(w, r)
+		display, life, word, game_mode,name_mode = gamemode_capitals(w, r)
 	})
 	http.HandleFunc("/gamemode_spanish", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_spanish(w, r)
+		display, life, word, game_mode,name_mode = gamemode_spanish(w, r)
 	})
 	http.HandleFunc("/gamemode_food", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_food(w, r)
+		display, life, word, game_mode,name_mode = gamemode_food(w, r)
 	})
 	http.HandleFunc("/gamemode_italiano", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_italiano(w, r)
+		display, life, word, game_mode,name_mode = gamemode_italiano(w, r)
 	})
 	http.HandleFunc("/gamemode_brands", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_brands(w, r)
+		display, life, word, game_mode,name_mode = gamemode_brands(w, r)
 	})
 	http.HandleFunc("/gamemode_countrys", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_countrys(w, r)
+		display, life, word, game_mode,name_mode = gamemode_countrys(w, r)
 	})
 	http.HandleFunc("/gamemode_portugese", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_portugese(w, r)
+		display, life, word, game_mode,name_mode = gamemode_portugese(w, r)
 	})
 	http.HandleFunc("/gamemode_sports", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_sports(w, r)
+		display, life, word, game_mode,name_mode = gamemode_sports(w, r)
 	})
 	http.HandleFunc("/gamemode_french_citys", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode = gamemode_french_citys(w, r)
+		display, life, word, game_mode,name_mode = gamemode_french_citys(w, r)
 	})
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
-		display, life, Failed_letter = letter(w, r, word, life, display, Failed_letter, game_mode)
+		display, life, Failed_letter = letter(w, r, word, life, display, Failed_letter, game_mode, name_mode)
 	})
 	http.HandleFunc("/restart", func(w http.ResponseWriter, r *http.Request) {
 		Failed_letter = restart(w, r)
@@ -77,21 +80,23 @@ func main() {
 
 //Functions
 
-func index(w http.ResponseWriter, r *http.Request) {
+func index(w http.ResponseWriter, r *http.Request) string{
+	Failed_letter := ""
 	tIndex, err := template.ParseFiles("template/index.html")
 	if err != nil {
 		panic(err)
 	}
 	tIndex.Execute(w, nil)
+	return Failed_letter
 }
 
-func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string) (string, int, string) {
+func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string,name_mode string) (string, int, string) {
 	tletter, err := template.ParseFiles("template/letter.html")
 	IndexHangman := 0
 	if err != nil {
 		panic(err)
 	}
-	letter := r.PostFormValue("letterInput")
+	letter := r.URL.Query().Get("id")
 	Display, life, IndexHangman, Failed_letter = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
 	htmlContent := fmt.Sprintf("%s", Display)
 	htmlContent2 := fmt.Sprintf("%d", life)
@@ -99,7 +104,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent4 := ""
 	htmlContent5 := fmt.Sprintf("%s", Failed_letter)
 	htmlContent6 := "static/images/hangman-" + strconv.Itoa(10-life) + ".png"
-	htmlContent7 := fmt.Sprintf("%s", game_mode)
+	htmlContent7 := fmt.Sprintf("%s", name_mode)
 	fmt.Println(Failed_letter)
 	if word == Display {
 		win(w, r,word)
@@ -185,7 +190,7 @@ func gamemode(w http.ResponseWriter, r *http.Request) {
 	tGamemode.Execute(w, nil)
 }
 
-func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -207,10 +212,10 @@ func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/english.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -232,10 +237,10 @@ func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, stri
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/german.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -257,10 +262,10 @@ func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/drinks.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -282,10 +287,10 @@ func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/capitals.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -307,10 +312,10 @@ func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, str
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/spanish.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -332,10 +337,10 @@ func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, stri
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/food.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -357,10 +362,10 @@ func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string,
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/italiano.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -382,10 +387,10 @@ func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, str
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/brands.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -407,10 +412,10 @@ func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/countrys.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -432,10 +437,10 @@ func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, str
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/portugese.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -457,10 +462,10 @@ func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, st
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/sports.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -482,10 +487,10 @@ func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
+func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/french_citys.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -507,7 +512,7 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-	return display, life, word, game_mode
+	return display, life, word, game_mode,htmlContent3
 }
 
 func contact(w http.ResponseWriter, r *http.Request) {
