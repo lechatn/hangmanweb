@@ -94,7 +94,6 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent5 := fmt.Sprintf("%s", Failed_letter)
 	htmlContent6 := "static/images/hangman-" + strconv.Itoa(10-life) + ".png"
 	htmlContent7 := fmt.Sprintf("%s", game_mode)
-	print(htmlContent6)
 	if word == Display {
 		win(w, r,word)
 		return Display, life, Failed_letter
