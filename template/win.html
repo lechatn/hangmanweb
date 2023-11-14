@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Pendu</title>
+    <title>Hangman</title>
     <link rel="icon" type="image/png" href="./static/potence.png">
     <link rel="stylesheet" href="./static/styles.css">
 </head>
 <body>
     <div class="centered-content">
         <h1>You win</h1>
+        <br>
+        <p>The good word was : {{.Word}}</p>
         <img src="static/images/victory.gif" alt="Description de l'image" class="menu-img">
-        <p>Vous avez gagné. Félicitation! Vous pouvez rejouer:</p>
-        <a href="/restart" class="menu-link">Rejouer</a>
+        <p>You can play again !</p>
+        <a href="/restart" class="menu-link">Play</a>
     </div>
 </body>
 </html>
-
-

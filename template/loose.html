@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Pendu</title>
+    <title>Hangman</title>
     <link rel="icon" type="image/png" href="./static/potence.png">
     <link rel="stylesheet" href="./static/styles.css">
 </head>
@@ -11,11 +11,10 @@
     <div class="centered-content">
         <h1 class="game-title">You lose</h1>
         <br>
+        <p>The good word was : {{.Word}}</p>
         <img src="./static/images/lost.gif" alt="Description de l'image" width="300" height="200">
-        <p>Vous avez perdu. Vous pouvez retenter votre chance !</p>
-        <a href="/restart" class="menu-link">Rejouer</a>
+        <p>You can try again!</p>
+        <a href="/restart" class="menu-link">Play</a>
     </div>
 </body>
 </html>
-
-
