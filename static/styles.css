@@ -30,7 +30,7 @@ h1 {
   height: 30vh;
 }
 .figure-partie {
-  display: none;
+  display: flex;
 
 }
 .mauvaises-lettres-contenant {
