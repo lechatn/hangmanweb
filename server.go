@@ -96,7 +96,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent7 := fmt.Sprintf("%s", game_mode)
 	print(htmlContent6)
 	if word == Display {
-		win(w, r)
+		win(w, r,word)
 		return Display, life, Failed_letter
 	}
 	if life == 0 {
@@ -124,12 +124,18 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	return Display, life, Failed_letter
 }
 
-func win(w http.ResponseWriter, r *http.Request) {
+func win(w http.ResponseWriter, r *http.Request, word string) {
 	tWin, err := template.ParseFiles("template/win.html")
 	if err != nil {
 		panic(err)
 	}
-	tWin.Execute(w, nil)
+	htmlContent := fmt.Sprintf("%s", word)
+	data := struct {
+		Word string
+	}{
+		Word: htmlContent,
+	}
+	tWin.Execute(w, data)
 }
 
 func regle(w http.ResponseWriter, r *http.Request) {
@@ -155,7 +161,14 @@ func loose(w http.ResponseWriter, r *http.Request, word string) {
 	if err != nil {
 		panic(err)
 	}
-	tWin.Execute(w, nil)
+	htmlContent := fmt.Sprintf("%s", word)
+	data := struct {
+		Word string
+	}{
+		Word: htmlContent,
+	}
+
+	tWin.Execute(w, data)
 }
 
 func gamemode(w http.ResponseWriter, r *http.Request) {
