@@ -67,6 +67,7 @@ func main() {
 	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
 		regle(w, r)
 	})
+	http.HandleFunc("/contact", contact) 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
@@ -463,3 +464,12 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 	tGamemode.Execute(w, data)
 	return display, life, word, game_mode
 }
+
+func contact(w http.ResponseWriter, r *http.Request) {
+    tcontact, err := template.ParseFiles("template/contact.html")
+    if err != nil {
+        panic(err)
+    }
+    tcontact.Execute(w, nil)
+}
+
