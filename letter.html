@@ -15,6 +15,7 @@
         <br>
         <p >Nombre de vies restantes : {{.Life}}</p>
         <p >Lettres que vous avez déja tenté : {{.Failed_letter}}</p>
+        <img src={{.ImageName}} alt="Description de l'image" width="300" height="200">
         <p>{{.IndexHangman}}</p>
         <form action="/letter" method="post">
             <label for="letterInput">Entrez une lettre : </label>
