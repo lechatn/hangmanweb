@@ -79,7 +79,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent3 := fmt.Sprintf("%s", word)
 	htmlContent4 := ""
 	htmlContent5 := fmt.Sprintf("%s", Failed_letter)
-	htmlContent6 := "static/images/hangman-"+strconv.Itoa(9-life)+".png"
+	htmlContent6 := "static/images/hangman-"+strconv.Itoa(10-life)+".png"
 	print(htmlContent6)
 	if word == Display {
 		win(w, r)
