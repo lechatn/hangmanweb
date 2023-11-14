@@ -29,7 +29,10 @@ func main() {
 		regle(w, r)
 	})
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	http.HandleFunc("/contact", contact)
+	
 	http.ListenAndServe(":8080", nil)
+	
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
@@ -38,6 +41,14 @@ func index(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	tIndex.Execute(w, nil)
+}
+
+func contact(w http.ResponseWriter, r *http.Request) {
+	tcontact, err := template.ParseFiles("contact.html")
+	if err != nil {
+		panic(err)
+	}
+	tcontact.Execute(w, nil)
 }
 
 func game(w http.ResponseWriter, r *http.Request, Display string, life int) {

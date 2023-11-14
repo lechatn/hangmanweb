@@ -14,7 +14,7 @@ h1, .menu h1 {
   color: #333;
 }
 
-/* Styling pour le champ de saisie */
+/* Styling for the input field */
 input[type="text"] {
   font-family: 'Courier New', monospace;
   padding: 5px;
@@ -29,12 +29,12 @@ button, .menu a {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease; /* Animation au survol */
+  transition: all 0.3s ease; /* Hover animation */
 }
 
 button:hover, .menu a:hover {
-  transform: scale(1.1); /* Redimensionne le bouton */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Ajoute une ombre portée */
+  transform: scale(1.1); /* Scale the button on hover */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
 }
 
 .menu {
@@ -59,17 +59,18 @@ button:hover, .menu a:hover {
 
 #top-left {
   position: absolute;
-  top: 20px; /* Ajustez la position par rapport au haut de la page selon vos besoins */
-  left: 20px; /* Ajustez la position par rapport à la gauche de la page selon vos besoins */
+  top: 20px;
+  left: 20px;
 }
-/* Styles pour le profil en haut */
-/* Styles pour le cercle et l'image de profil */
+
+/* Styles for the profile in the top-left corner */
+/* Styles for the circle and profile image */
 
 .circle {
-  width: 50px; /* Ajustez la taille du cercle selon vos besoins */
-  height: 50px; /* Ajustez la taille du cercle selon vos besoins */
-  border-radius: 50%; /* Pour créer un cercle */
-  background-color: white; /* Couleur du fond blanc */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,19 +78,19 @@ button:hover, .menu a:hover {
 }
 
 .profil-img {
-  width: 40px; /* Ajuste la taille de l'image pour remplir le cercle */
-  height: 40px; /* Ajuste la taille de l'image pour remplir le cercle */
-  border-radius: 50%; /* Pour rendre l'image ronde */
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   position: absolute;
 }
 
 .overlay-text {
   text-align: center;
-  color: black; /* Couleur du texte */
+  color: black;
   position: absolute;
-  bottom: 5px; /* Ajuste la position du texte par rapport au bas de l'image */
+  bottom: 5px;
   width: 100%;
-  font-size: 10px; /* Ajuster la taille du texte */
+  font-size: 10px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -97,13 +98,12 @@ button:hover, .menu a:hover {
 }
 
 .footer-content {
-  /* Positionne les éléments en bas de la page */
   position: absolute;
-  bottom: 20px; /* Ajustez la distance par rapport au bas de la page selon vos besoins */
-  left: 50%; /* Pour centrer horizontalement */
+  bottom: 20px;
+  left: 50%;
   transform: translateX(-50%);
   color: white;
-  z-index: 1; 
+  z-index: 1;
 }
 
 .footer-content a {
@@ -115,21 +115,30 @@ button:hover, .menu a:hover {
 .bande-grise {
   position: absolute;
   width: 100%;
-  height: 50px; /* Ajustez la hauteur de la bande grise selon vos besoins */
-  background-color: #4CAF50; /* Couleur grise */
+  height: 50px;
+  background-color: #4CAF50;
   bottom: 0;
 }
-/* New styles for the hangman.png image */
+
+/* New styles for the victory.gif image */
 .menu img {
-  border: 5px solid #020d13; /* Adjust border properties */
-  border-radius: 10px; /* Adjust border radius as needed */
+  border: 5px solid #020d13;
+  border-radius: 10px;
+}
+
+/* Additional styling for the overlay text */
+.overlay-text {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 5px;
 }
 
 /* Add this to your existing styles.css file or in a style tag in the head of your HTML file */
 
 .centered-content {
   text-align: center;
-  margin-top: 50px; /* Adjust the top margin as needed */
+  margin-top: 50px;
 }
 
 .styled-text {
@@ -138,3 +147,27 @@ button:hover, .menu a:hover {
   line-height: 1.5;
   margin-top: 20px;
 }
+
+.centered-content {
+text-align: center;
+  margin-top: 50px;
+}
+
+/* Add this to your existing styles.css file or in a style tag in the head of your HTML file */
+
+.menu-link {
+  text-decoration: none;
+  color: #FFF;
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.menu-link:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
