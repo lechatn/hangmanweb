@@ -10,11 +10,14 @@ import (
 )
 
 func main() {
+	//Define the different values
 	var word string
 	var life int
 	var display string
 	var Failed_letter string
 	var game_mode string
+
+	//Define the different routes
 	http.HandleFunc("/", index)
 	http.HandleFunc("/gamemode", func(w http.ResponseWriter, r *http.Request) {
 		gamemode(w, r)
@@ -71,6 +74,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
+
+//Functions
 
 func index(w http.ResponseWriter, r *http.Request) {
 	tIndex, err := template.ParseFiles("template/index.html")
@@ -472,4 +477,3 @@ func contact(w http.ResponseWriter, r *http.Request) {
     }
     tcontact.Execute(w, nil)
 }
-
