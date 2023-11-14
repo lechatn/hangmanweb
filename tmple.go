@@ -2,23 +2,34 @@ package main
 
 import (
 	"html/template"
+	"math/rand"
 	"net/http"
 	"strings"
+	"time"
 )
 
 type PageData struct {
 	Life int
 }
 
-var wordToGuess = "GOLANG"
-var guessedWord = make([]string, len(wordToGuess))
-var incorrectGuesses = make([]string, 0)
-var maxIncorrectGuesses = 6
+var wordsToGuess = []string
+var wordToGuess string
+var guessedWord []string
+var incorrectGuesses []string
+var maxIncorrectGuesses = 10
 
 func init() {
+	rand.Seed(time.Now().UnixNano())
+	wordToGuess = getRandomWord()
+	guessedWord = make([]string, len(wordToGuess))
+
 	for i := 0; i < len(guessedWord); i++ {
 		guessedWord[i] = "_"
 	}
+}
+
+func getRandomWord() string {
+	return wordsToGuess[rand.Intn(len(wordsToGuess))]
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, data PageData) {
@@ -143,5 +154,6 @@ var yourHTMLString = `
             <p>The correct word was : </p>
   </div>      
         </form>
-<body>
-<html>
+</body>
+</html>
+`
