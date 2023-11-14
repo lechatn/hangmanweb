@@ -86,7 +86,7 @@ func main() {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	tIndex, err := template.ParseFiles("index.html")
+	tIndex, err := template.ParseFiles("template/index.html")
 	if err != nil {
 		panic(err)
 	}
@@ -94,7 +94,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 }
 
 func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string) (string, int, string) {
-	tletter, err := template.ParseFiles("letter.html")
+	tletter, err := template.ParseFiles("template/letter.html")
 	IndexHangman := 0
 	if err != nil {
 		panic(err)
@@ -144,7 +144,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 }
 
 func win(w http.ResponseWriter, r *http.Request) {
-	tWin, err := template.ParseFiles("win.html")
+	tWin, err := template.ParseFiles("template/win.html")
 	if err != nil {
 		panic(err)
 	}
@@ -152,7 +152,7 @@ func win(w http.ResponseWriter, r *http.Request) {
 }
 
 func regle(w http.ResponseWriter, r *http.Request) {
-	tRegles, err := template.ParseFiles("regle.html")
+	tRegles, err := template.ParseFiles("template/regle.html")
 	if err != nil {
 		panic(err)
 	}
@@ -160,7 +160,7 @@ func regle(w http.ResponseWriter, r *http.Request) {
 }
 
 func restart(w http.ResponseWriter, r *http.Request) string {
-	tRestart, err := template.ParseFiles("game_mode.html")
+	tRestart, err := template.ParseFiles("template/game_mode.html")
 	if err != nil {
 		panic(err)
 	}
@@ -171,7 +171,7 @@ func restart(w http.ResponseWriter, r *http.Request) string {
 }
 
 func loose(w http.ResponseWriter, r *http.Request, word string) {
-	tWin, err := template.ParseFiles("loose.html")
+	tWin, err := template.ParseFiles("template/loose.html")
 	if err != nil {
 		panic(err)
 	}
@@ -179,7 +179,7 @@ func loose(w http.ResponseWriter, r *http.Request, word string) {
 }
 
 func gamemode(w http.ResponseWriter, r *http.Request) {
-	tGamemode, err := template.ParseFiles("game_mode.html")
+	tGamemode, err := template.ParseFiles("template/game_mode.html")
 	if err != nil {
 		panic(err)
 	}
@@ -191,7 +191,7 @@ func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, strin
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_french"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -214,7 +214,7 @@ func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, stri
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_english"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -237,7 +237,7 @@ func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, strin
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_german"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -260,7 +260,7 @@ func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, strin
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_drinks"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -284,7 +284,7 @@ func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, str
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_capitals"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -308,7 +308,7 @@ func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, stri
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_spanish"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -332,7 +332,7 @@ func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string,
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_food"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -356,7 +356,7 @@ func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, str
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_italiano"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -381,7 +381,7 @@ func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, strin
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_brands"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -406,7 +406,7 @@ func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, str
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_country"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -431,7 +431,7 @@ func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, st
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_portugese"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -456,7 +456,7 @@ func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, strin
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_sports"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
@@ -481,7 +481,7 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 	display := hangman.DisplayWord(word)
 	life := 10
 	game_mode := "/gamemode_citys"
-	tGamemode, err := template.ParseFiles("game.html")
+	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	data := struct {
