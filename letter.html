@@ -16,7 +16,7 @@
         <p >Nombre de vies restantes : {{.Life}}</p>
         <p >Lettres que vous avez déja tenté : {{.Failed_letter}}</p>
         <img src={{.ImageName}} alt="Description de l'image" width="300" height="200">
-        <form action="/letter" method="post">
+        <form action=/letter method="post">
             <label for="letterInput">Entrez une lettre : </label>
             <input type="text" id="letterInput" name="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required autofocus>
             <button type="submit">Tester</button>
