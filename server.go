@@ -22,55 +22,42 @@ func main() {
 	http.HandleFunc("/gamemode_french", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_french(w, r)
 	})
-
 	http.HandleFunc("/gamemode_english", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_english(w, r)
 	})
-
 	http.HandleFunc("/gamemode_german", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_german(w, r)
 	})
-
 	http.HandleFunc("/gamemode_drinks", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_drinks(w, r)
 	})
-
 	http.HandleFunc("/gamemode_capitals", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_capitals(w, r)
 	})
-
 	http.HandleFunc("/gamemode_spanish", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_spanish(w, r)
 	})
-
 	http.HandleFunc("/gamemode_food", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_food(w, r)
 	})
-
 	http.HandleFunc("/gamemode_italiano", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_italiano(w, r)
 	})
-
 	http.HandleFunc("/gamemode_brands", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_brands(w, r)
 	})
-
 	http.HandleFunc("/gamemode_countrys", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_countrys(w, r)
 	})
-
 	http.HandleFunc("/gamemode_portugese", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_portugese(w, r)
 	})
-
 	http.HandleFunc("/gamemode_sports", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_sports(w, r)
 	})
-
 	http.HandleFunc("/gamemode_french_citys", func(w http.ResponseWriter, r *http.Request) {
 		display, life, word, game_mode = gamemode_french_citys(w, r)
 	})
-
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
 		display, life, Failed_letter = letter(w, r, word, life, display, Failed_letter, game_mode)
 	})
@@ -80,7 +67,6 @@ func main() {
 	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
 		regle(w, r)
 	})
-
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
@@ -99,10 +85,6 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	if err != nil {
 		panic(err)
 	}
-	// Créez une variable dynamique en Go
-	// Générez le contenu HTML avec la variable dynamique
-
-	// Écrivez la réponse HTML dans la sortie HTTP
 	letter := r.PostFormValue("letterInput")
 	Display, life, IndexHangman, Failed_letter = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
 	htmlContent := fmt.Sprintf("%s", Display)
@@ -139,7 +121,6 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 		Game_mode:     htmlContent7,
 	}
 	tletter.Execute(w, data)
-
 	return Display, life, Failed_letter
 }
 
@@ -166,7 +147,6 @@ func restart(w http.ResponseWriter, r *http.Request) string {
 	}
 	tRestart.Execute(w, nil)
 	Failed_letter := ""
-
 	return Failed_letter
 }
 
@@ -205,7 +185,6 @@ func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
 }
 
@@ -228,7 +207,6 @@ func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, stri
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
 }
 
@@ -251,7 +229,6 @@ func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
 }
 
@@ -274,9 +251,7 @@ func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, strin
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -298,9 +273,7 @@ func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, str
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -322,9 +295,7 @@ func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, stri
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -346,9 +317,7 @@ func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string,
 		panic(err)
 	}
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -369,11 +338,8 @@ func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, str
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -394,11 +360,8 @@ func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, strin
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -419,11 +382,8 @@ func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, str
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -444,11 +404,8 @@ func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, st
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -469,11 +426,8 @@ func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, strin
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
 
 func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int, string, string) {
@@ -494,9 +448,6 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 	if err != nil {
 		panic(err)
 	}
-
 	tGamemode.Execute(w, data)
-
 	return display, life, word, game_mode
-
 }
