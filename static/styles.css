@@ -1,17 +1,80 @@
 /* Add this to your existing styles.css file or in a style tag in the head of your HTML file */
 
 body {
-  background-color: rgb(111, 196, 238);
   font-family: 'Arial', sans-serif;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  margin: 0;
+
+  /* Dark mode colors and gradient */
+  background: #121212; /* Fallback for browsers that don't support gradients */
+  background: linear-gradient(
+    135deg,
+    #121212 25%,
+    #1a1a1a 25%,
+    #1a1a1a 50%,
+    #121212 50%,
+    #121212 75%,
+    #1a1a1a 75%,
+    #1a1a1a
+  );
+  background-size: 40px 40px;
+
+  /* Animation */
+  animation: move 4s linear infinite;
+  
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 h1, .menu h1 {
   color: #333;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.menu h1 {
+  color: #183153;
+  margin-bottom: 20px;
+}
+
+.menu img {
+  margin: 10px 0;
+  border: 5px solid #020d13;
+  border-radius: 50px;
+}
+
+.menu button {
+  margin-top: 10px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #FFF;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
 /* Styling for the input field */
@@ -22,26 +85,79 @@ input[type="text"] {
   border-radius: 3px;
 }
 
-button, .menu a {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
+button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease; /* Hover animation */
-}
+ }
 
-button:hover, .menu a:hover {
-  transform: scale(1.1); /* Scale the button on hover */
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
-}
+ 
+ button:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #FFD401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+ }
+ 
+ button:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+ }
+ 
+ button span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+ }
+ 
+ button:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+ }
+ 
+ @keyframes scaleUp {
+  0% {
+   transform: scale(1);
+  }
+ 
+  50% {
+   transform: scale(0.95);
+  }
+ 
+  100% {
+   transform: scale(1);
+  }
+ }
+ 
 
 .menu {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  color: #FFD401;
+}
+
+.category-title {
+  margin-bottom: 20px; /* Ajustez la marge selon vos besoins */
 }
 
 .menu h1 {
@@ -51,7 +167,6 @@ button:hover, .menu a:hover {
 .menu a {
   text-decoration: none;
   color: #FFF;
-  background-color: #4CAF50;
   padding: 10px 20px;
   border-radius: 5px;
   margin-top: 20px;
@@ -61,6 +176,10 @@ button:hover, .menu a:hover {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+.menu button span {
+  font-family: 'Arial', sans-serif; /* Remplacez 'NomDeLaPoliceDuTexte' par le nom de la police du texte */
 }
 
 /* Styles for the profile in the top-left corner */
@@ -97,19 +216,53 @@ button:hover, .menu a:hover {
   text-align: center;
 }
 
-.footer-content {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  z-index: 1;
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  bottom: 20px; /* Ajustez cette valeur selon vos besoins */
+  width: 100%;
 }
 
-.footer-content a {
-  text-decoration: none;
-  color: white;
-  margin: 0 10px;
+
+.btn1 a {
+  text-decoration: none; /* Pour supprimer le soulignement */
+  color: #183153; /* Couleur du texte */
+}
+
+.btn1 {
+  /* Vos styles existants pour les boutons */
+  position: relative;
+  font-size: 1.2rem;
+  padding: 1rem 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: rgb(14, 14, 26);
+  color: rgb(234, 234, 234);
+  font-weight: 700;
+  transition: 0.6s;
+  box-shadow: 0px 0px 60px #1f4c65;
+  -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+  margin-top: 10px;
+}
+
+.btn1:not(:last-child) {
+  margin-right: 10px; /* Ajoutez une marge à droite pour l'espace entre les boutons */
+}
+
+.btn1:active {
+  scale: 0.92;
+}
+
+.btn1:hover {
+  background: rgb(2,29,78);
+  background: linear-gradient(270deg, rgba(2, 29, 78, 0.681) 0%, rgba(31, 215, 232, 0.873) 60%);
+  color: rgb(0, 0, 0);
 }
 
 .bande-grise {
@@ -143,7 +296,7 @@ button:hover, .menu a:hover {
 
 .styled-text {
   font-size: 16px;
-  color: #333;
+  color: #FFD401;
   line-height: 1.5;
   margin-top: 20px;
 }
@@ -170,6 +323,159 @@ text-align: center;
   transform: scale(1.1);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+.card {
+  display: flex;
+  height: 70px;
+  width: 270px;
+}
+
+.card svg {
+  position: absolute;
+  display: flex;
+  width: 60%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 700;
+  opacity: 1;
+  transition: opacity 0.25s;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card .social-link1,.card .social-link2,.card .social-link3,.card .social-link4 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25%;
+  color: whitesmoke;
+  font-size: 24px;
+  text-decoration: none;
+  transition: 0.25s;
+  border-radius: 50px;
+}
+
+.card svg {
+  transform: scale(1);
+}
+
+.card .social-link1:hover {
+  background: #f09433;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link2:hover {
+  background-color: #00ccff;
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link3:hover {
+  background-color: #5865f2;
+  animation: bounce_613 0.4s linear;
+}
+
+.card .social-link4:hover {
+  background-color: #12a50b;
+  animation: bounce_613 0.4s linear;
+}
+
+@keyframes bounce_613 {
+  40% {
+    transform: scale(1.4);
+  }
+
+  60% {
+    transform: scale(0.8);
+  }
+
+  80% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.game-mode {
+  display: flex;
+  flex-wrap: wrap; /* Permettre le passage à la ligne si l'espace est insuffisant */
+  justify-content: space-around; /* Aligner les boutons horizontalement */
+}
+
+.category-button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+  margin-top: 10px; /* Ajustez selon vos besoins */
+  text-decoration: none; /* Supprimer le soulignement */
+  margin: 10px;
+}
+
+.category-button:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #FFD401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.category-button:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.category-button a {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.category-button:hover a {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.centered-content h1 {
+  color: #183153; /* Remplacez #ff0000 par la couleur de votre choix en format hexadécimal, RGB, ou un nom de couleur */
+}
+
 
 a.button {
   display: inline-block;
