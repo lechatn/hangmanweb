@@ -7,7 +7,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  color : white;
+  opacity: 0.9;
   /* Dark mode colors and gradient */
   background: #121212; /* Fallback for browsers that don't support gradients */
   background: linear-gradient(

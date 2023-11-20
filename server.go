@@ -17,6 +17,8 @@ func main() {
 	var Failed_letter string
 	var game_mode string
 	var name_mode string
+	var score int
+	var win_series int
 
 	//Define the different routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -65,7 +67,7 @@ func main() {
 		display, life, word, game_mode,name_mode = gamemode_french_citys(w, r)
 	})
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
-		display, life, Failed_letter = letter(w, r, word, life, display, Failed_letter, game_mode, name_mode)
+		display, life, Failed_letter, score, win_series = letter(w, r, word, life, display, Failed_letter, game_mode, name_mode, score, win_series)
 	})
 	http.HandleFunc("/restart", func(w http.ResponseWriter, r *http.Request) {
 		Failed_letter = restart(w, r)
@@ -90,7 +92,7 @@ func index(w http.ResponseWriter, r *http.Request) string{
 	return Failed_letter
 }
 
-func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string,name_mode string) (string, int, string) {
+func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string,name_mode string, score int, win_series int) (string, int, string, int, int) {
 	tletter, err := template.ParseFiles("template/letter.html")
 	IndexHangman := 0
 	if err != nil {
@@ -105,14 +107,16 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent5 := fmt.Sprintf("%s", Failed_letter)
 	htmlContent6 := "static/images/hangman-" + strconv.Itoa(10-life) + ".png"
 	htmlContent7 := fmt.Sprintf("%s", name_mode)
+	htmlContent8 := fmt.Sprintf("%d", score)
 	fmt.Println(Failed_letter)
 	if word == Display {
-		win(w, r,word)
-		return Display, life, Failed_letter
+		score, win_series = win(w, r,word,Failed_letter,life,score, win_series)
+		return Display, life, Failed_letter, score, win_series
 	}
 	if life == 0 {
-		loose(w, r, word)
-		return Display, life, Failed_letter
+		score = loose(w, r, word,Failed_letter,life,score)
+		win_series = 0
+		return Display, life, Failed_letter, score, win_series
 	}
 	data := struct {
 		Display       string
@@ -122,6 +126,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 		Failed_letter string
 		ImageName     string
 		Game_mode     string
+		Score		 string
 	}{
 		Display:       htmlContent,
 		Life:          htmlContent2,
@@ -130,23 +135,31 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 		Failed_letter: htmlContent5,
 		ImageName:     htmlContent6,
 		Game_mode:     htmlContent7,
+		Score:		   htmlContent8,
 	}
 	tletter.Execute(w, data)
-	return Display, life, Failed_letter
+	return Display, life, Failed_letter,score, win_series
 }
 
-func win(w http.ResponseWriter, r *http.Request, word string) {
+func win(w http.ResponseWriter, r *http.Request, word string, Failed_letter string, life int, score int, win_series int) (int,int) {
 	tWin, err := template.ParseFiles("template/win.html")
 	if err != nil {
 		panic(err)
 	}
+	win_series++
+	score = score + life/2*win_series
 	htmlContent := fmt.Sprintf("%s", word)
+	htmlContent2 := fmt.Sprintf("%d", score)
 	data := struct {
 		Word string
+		Score string
 	}{
 		Word: htmlContent,
+		Score: htmlContent2,
 	}
 	tWin.Execute(w, data)
+
+	return score, win_series
 }
 
 func regle(w http.ResponseWriter, r *http.Request) {
@@ -167,19 +180,24 @@ func restart(w http.ResponseWriter, r *http.Request) string {
 	return Failed_letter
 }
 
-func loose(w http.ResponseWriter, r *http.Request, word string) {
+func loose(w http.ResponseWriter, r *http.Request, word string,Failed_letter string,life int, score int) int{
 	tWin, err := template.ParseFiles("template/loose.html")
 	if err != nil {
 		panic(err)
 	}
 	htmlContent := fmt.Sprintf("%s", word)
+	htmlContent2 := fmt.Sprintf("%d", score)
 	data := struct {
 		Word string
+		Score string
 	}{
 		Word: htmlContent,
+		Score: htmlContent2,
 	}
 
 	tWin.Execute(w, data)
+
+	return score
 }
 
 func gamemode(w http.ResponseWriter, r *http.Request) {
