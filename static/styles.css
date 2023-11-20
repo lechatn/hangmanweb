@@ -601,3 +601,40 @@ a#W.button {
 .button:focus {
   outline: none;
 }
+
+
+.score {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border-radius: 9px;
+  background: #FFD401;
+  color: #1a1a1a;
+  border: none;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+
+  /* Ajout des propriétés pour l'alignement à droite */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+/* Réduction de la taille */
+.score {
+  width: 100px;
+  height: 40px;
+}
+
+.score:hover {
+  box-shadow: 3px 2px 28px -7px #C3D900;
+}
+
+.score:active {
+  transform: scale(0.97);
+  box-shadow: 3px 2px 28px -5px #C3D900;
+}
+

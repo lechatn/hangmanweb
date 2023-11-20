@@ -22,7 +22,7 @@ func main() {
 
 	//Define the different routes
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		Failed_letter = index(w, r)
+		Failed_letter,score,win_series = index(w, r)
 	})
 	http.HandleFunc("/gamemode", func(w http.ResponseWriter, r *http.Request) {
 		gamemode(w, r)
@@ -82,14 +82,16 @@ func main() {
 
 //Functions
 
-func index(w http.ResponseWriter, r *http.Request) string{
+func index(w http.ResponseWriter, r *http.Request) (string,int,int){
+	score := 0
+	win_series := 0
 	Failed_letter := ""
 	tIndex, err := template.ParseFiles("template/index.html")
 	if err != nil {
 		panic(err)
 	}
 	tIndex.Execute(w, nil)
-	return Failed_letter
+	return Failed_letter,score,win_series
 }
 
 func letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string,name_mode string, score int, win_series int) (string, int, string, int, int) {
