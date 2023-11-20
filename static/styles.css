@@ -49,6 +49,7 @@ h1, .menu h1 {
 }
 
 .menu h1 {
+  color: #183153;
   margin-bottom: 20px;
 }
 
@@ -152,6 +153,11 @@ button {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  color: #FFD401;
+}
+
+.category-title {
+  margin-bottom: 20px; /* Ajustez la marge selon vos besoins */
 }
 
 .menu h1 {
@@ -290,7 +296,7 @@ button {
 
 .styled-text {
   font-size: 16px;
-  color: #333;
+  color: #FFD401;
   line-height: 1.5;
   margin-top: 20px;
 }
@@ -464,4 +470,8 @@ text-align: center;
   100% {
     transform: scale(1);
   }
+}
+
+.centered-content h1 {
+  color: #183153; /* Remplacez #ff0000 par la couleur de votre choix en format hexadécimal, RGB, ou un nom de couleur */
 }
