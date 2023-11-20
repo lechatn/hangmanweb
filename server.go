@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
-	"time"
 )
 
 func main() {
@@ -29,43 +28,43 @@ func main() {
 		gamemode(w, r)
 	})
 	http.HandleFunc("/gamemode_french", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_french(w, r)
+		display, life, word, game_mode,name_mode = gamemode_french(w, r,score)
 	})
 	http.HandleFunc("/gamemode_english", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_english(w, r)
+		display, life, word, game_mode,name_mode = gamemode_english(w, r,score)
 	})
 	http.HandleFunc("/gamemode_german", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_german(w, r)
+		display, life, word, game_mode,name_mode = gamemode_german(w, r,score)
 	})
 	http.HandleFunc("/gamemode_drinks", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_drinks(w, r)
+		display, life, word, game_mode,name_mode = gamemode_drinks(w, r,score)
 	})
 	http.HandleFunc("/gamemode_capitals", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_capitals(w, r)
+		display, life, word, game_mode,name_mode = gamemode_capitals(w, r,score)
 	})
 	http.HandleFunc("/gamemode_spanish", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_spanish(w, r)
+		display, life, word, game_mode,name_mode = gamemode_spanish(w, r,score)
 	})
 	http.HandleFunc("/gamemode_food", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_food(w, r)
+		display, life, word, game_mode,name_mode = gamemode_food(w, r,score)
 	})
 	http.HandleFunc("/gamemode_italiano", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_italiano(w, r)
+		display, life, word, game_mode,name_mode = gamemode_italiano(w, r,score)
 	})
 	http.HandleFunc("/gamemode_brands", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_brands(w, r)
+		display, life, word, game_mode,name_mode = gamemode_brands(w, r,score)
 	})
 	http.HandleFunc("/gamemode_countrys", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_countrys(w, r)
+		display, life, word, game_mode,name_mode = gamemode_countrys(w, r,score)
 	})
 	http.HandleFunc("/gamemode_portugese", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_portugese(w, r)
+		display, life, word, game_mode,name_mode = gamemode_portugese(w, r,score)
 	})
 	http.HandleFunc("/gamemode_sports", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_sports(w, r)
+		display, life, word, game_mode,name_mode = gamemode_sports(w, r,score)
 	})
 	http.HandleFunc("/gamemode_french_citys", func(w http.ResponseWriter, r *http.Request) {
-		display, life, word, game_mode,name_mode = gamemode_french_citys(w, r)
+		display, life, word, game_mode,name_mode = gamemode_french_citys(w, r,score)
 	})
 	http.HandleFunc("/letter", func(w http.ResponseWriter, r *http.Request) {
 		display, life, Failed_letter, score, win_series = letter(w, r, word, life, display, Failed_letter, game_mode, name_mode, score, win_series)
@@ -211,7 +210,7 @@ func gamemode(w http.ResponseWriter, r *http.Request) {
 	tGamemode.Execute(w, nil)
 }
 
-func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_french(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -220,14 +219,17 @@ func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, strin
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "French")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -236,7 +238,7 @@ func gamemode_french(w http.ResponseWriter, r *http.Request) (string, int, strin
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_english(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/english.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -245,14 +247,17 @@ func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, stri
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "English")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -261,7 +266,7 @@ func gamemode_english(w http.ResponseWriter, r *http.Request) (string, int, stri
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_german(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/german.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -270,14 +275,17 @@ func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, strin
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "German")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -286,7 +294,7 @@ func gamemode_german(w http.ResponseWriter, r *http.Request) (string, int, strin
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_drinks(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/drinks.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -295,14 +303,17 @@ func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, strin
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Drinks")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -311,7 +322,7 @@ func gamemode_drinks(w http.ResponseWriter, r *http.Request) (string, int, strin
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_capitals(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/capitals.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -320,14 +331,17 @@ func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, str
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Capitals")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -336,7 +350,7 @@ func gamemode_capitals(w http.ResponseWriter, r *http.Request) (string, int, str
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_spanish(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/spanish.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -345,14 +359,17 @@ func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, stri
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Spanish")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -361,7 +378,7 @@ func gamemode_spanish(w http.ResponseWriter, r *http.Request) (string, int, stri
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_food(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/food.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -370,14 +387,17 @@ func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string,
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Food")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -386,7 +406,7 @@ func gamemode_food(w http.ResponseWriter, r *http.Request) (string, int, string,
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_italiano(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/italiano.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -395,14 +415,17 @@ func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, str
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Italiano")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -411,7 +434,7 @@ func gamemode_italiano(w http.ResponseWriter, r *http.Request) (string, int, str
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_brands(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/brands.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -420,14 +443,17 @@ func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, strin
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Brands")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -436,7 +462,7 @@ func gamemode_brands(w http.ResponseWriter, r *http.Request) (string, int, strin
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_countrys(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/countrys.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -445,14 +471,17 @@ func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, str
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Countrys")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -461,7 +490,7 @@ func gamemode_countrys(w http.ResponseWriter, r *http.Request) (string, int, str
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_portugese(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/portugese.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -470,14 +499,17 @@ func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, st
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", "Portugese")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode  string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -486,7 +518,7 @@ func gamemode_portugese(w http.ResponseWriter, r *http.Request) (string, int, st
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_sports(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/sports.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -495,14 +527,17 @@ func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, strin
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3  := fmt.Sprintf("%s", "Sports")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode  string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)
@@ -511,7 +546,7 @@ func gamemode_sports(w http.ResponseWriter, r *http.Request) (string, int, strin
 	return display, life, word, game_mode,htmlContent3
 }
 
-func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int, string, string, string) {
+func gamemode_french_citys(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
 	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/french_citys.txt"))
 	display := hangman.DisplayWord(word)
 	life := 10
@@ -520,14 +555,17 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 	htmlContent := fmt.Sprintf("%s", display)
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3  := fmt.Sprintf("%s", "French Citys")
+	htmlContent4 := fmt.Sprintf("%d", score)
 	data := struct {
 		Display string
 		Life    string
 		Game_mode  string
+		Score string
 	}{
 		Display: htmlContent,
 		Life:    htmlContent2,
 		Game_mode: htmlContent3,
+		Score: htmlContent4,
 	}
 	if err != nil {
 		panic(err)

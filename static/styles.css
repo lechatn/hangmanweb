@@ -604,8 +604,8 @@ a#W.button {
 
 
 .score {
-  width: 120px;
-  height: 40px;
+  width: 130px;
+  height: 50px; /* Augmentez la hauteur pour voir si le texte se centre correctement */
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 8px;
