@@ -1,25 +1,61 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeu de Pendu</title>
+    <title>Hangman Game</title>
     <link rel="icon" type="image/png" href="./static/potence.png">
-    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="./static/css/styles.css">
 </head>
 <body>
     <div id="game" >
-        <h1>Jeu de Pendu</h1>
-        <h2>Voici le mot à trouver : </h2>
+        <div class="encadrement-texte">
+            <h3>Game mode: {{.Game_mode}}</h3>
+        </div>
+        <h1>Hangman</h1>
+        <h2>Try to find this word : </h2>
         <p>{{.Display}}</p>
         <br>
-        <p >Nombre de vies restantes : {{.Life}}</p>
-        <p >Lettres que vous avez déja tenté : </p>
-        <img src="/static/images/hangman-0.png" alt="Description de l'image" width="300" height="200">
+        <p >You have {{.Life}} lifes</p>
+        <p >Letters you already try : </p>
+        <div class="score">
+            <p >Your score : {{.Score}}</p>
+        </div>
+        <img src="/static/images/hangman-0.png" alt="Description de l'image" width="350" height="350">
         <form action="/letter" method="post">
-            <label for="letterInput">Entrez une lettre : </label>
-            <input type="text" id="letterInput" name="letterInput" maxlength="1" pattern="[A-Za-z]" title="Entrez une seule lettre alphabétique" required autofocus>
-            <button type="submit">Tester</button>
+            <label for="letterInput">Choose a letter : </label>
+            <div class="keyboard">
+                <a href="/letter?id=A" class="button">A</a>
+                <a href="/letter?id=Z" class="button">Z</a>
+                <a href="/letter?id=E" class="button">E</a>
+                <a href="/letter?id=R" class="button">R</a>
+                <a href="/letter?id=T" class="button">T</a>
+                <a href="/letter?id=Y" class="button">Y</a>
+                <a href="/letter?id=U" class="button">U</a>
+                <a href="/letter?id=I" class="button">I</a>
+                <a href="/letter?id=O" class="button">O</a>
+                <a href="/letter?id=P" class="button">P</a>
+                <br>
+                <br>
+                <a id="Q"href="/letter?id=Q" class="button">Q</a>
+                <a href="/letter?id=S" class="button">S</a>
+                <a href="/letter?id=D" class="button">D</a>
+                <a href="/letter?id=F" class="button">F</a>
+                <a href="/letter?id=G" class="button">G</a>
+                <a href="/letter?id=H" class="button">H</a>
+                <a href="/letter?id=J" class="button">J</a>
+                <a href="/letter?id=K" class="button">K</a>
+                <a href="/letter?id=L" class="button">L</a>
+                <a href="/letter?id=M" class="button">M</a>
+                <br>
+                <br>
+                <a id="W" href="/letter?id=W" class="button">W</a>
+                <a href="/letter?id=X" class="button">X</a>
+                <a href="/letter?id=C" class="button">C</a>
+                <a href="/letter?id=V" class="button">V</a>
+                <a href="/letter?id=B" class="button">B</a>
+                <a href="/letter?id=N" class="button">N</a> 
+            </div>   
         </form>
     </div>
 </body>

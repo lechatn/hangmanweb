@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel="icon" type="image/png" href="./static/potence.png">
-    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="./static/css/styles.css">
 </head>
 <body>
     <div class="centered-content">
         <h1 class="game-title">You lose</h1>
         <br>
         <p>The good word was : {{.Word}}</p>
-        <img src="./static/images/lost.gif" alt="Description de l'image" width="300" height="200">
+        <img src="static/images/lost.gif" alt="Description de l'image" class="menu-img">
         <p>You can try again!</p>
-        <a href="/restart" class="menu-link">Play</a>
+        <a href="/restart" class="menu-link">Play again</a>
+        <br>
+        <a href="/" class="menu-link">Restart Game</a>
     </div>
 </body>
 </html>
