@@ -1,7 +1,2 @@
-github.com/GuillaumeAntier/hangman v0.0.0-20231113075559-8ccaed46f0ee h1:K0w4bnBJU/gIPvINB3njzz6JbInOJw8bqjCCe57+USc=
-github.com/GuillaumeAntier/hangman v0.0.0-20231113075559-8ccaed46f0ee/go.mod h1:Pa9eyFpYGdGTniigtSXFzChLqwhaQZkcosAsN3NJcis=
-github.com/gorilla/websocket v1.5.0/go.mod h1:YR8l580nyteQvAITg2hZ9XVh4b55+EU/adAjf1fMHhE=
-github.com/lechatn/hangman v0.0.0-20231113072838-5cb6642e20dc h1:5DVSaj+Fdnq95WyDkEzPEm4zv2S1xnAY6yX8aX6A8WQ=
-github.com/lechatn/hangman v0.0.0-20231113072838-5cb6642e20dc/go.mod h1:e2wyIhpKbnXgfqakxhcyqaP0UOfPO5RGM8JeqM07CdM=
 github.com/lechatn/hangman v0.0.0-20231116120024-70ac60b6253d h1:czr5LGcoqfhMRcN3RDvwUuBxxi22z3OD/au656K9CT0=
 github.com/lechatn/hangman v0.0.0-20231116120024-70ac60b6253d/go.mod h1:e2wyIhpKbnXgfqakxhcyqaP0UOfPO5RGM8JeqM07CdM=
