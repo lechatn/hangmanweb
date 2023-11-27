@@ -633,3 +633,74 @@ a#W.button {
   box-shadow: 3px 2px 28px -5px #C3D900;
 }
 
+.restart-button {
+  /* Add styles specific to the restart button */
+  /* For example, you can use the same styles as category-button */
+  /* Adjust as needed */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;  /* Set text color to white */
+  padding: 10px 20px;  /* Increase padding for a thicker button */
+  border-radius: 8px;  /* Optional: Adjust border-radius for rounded corners */
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+  margin-top: 10px;
+  text-decoration: none; /* Supprimer le soulignement */
+  margin: 10px;
+
+}
+
+.restart-button:after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #FFD401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.restart-button:hover::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.restart-button a {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.restart-button:hover a {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
