@@ -1,5 +1,5 @@
-module server.go
+module hangmanweb
 
-go 1.18
+go 1.13
 
-require github.com/lechatn/hangman v0.0.0-20231113072838-5cb6642e20dc
+require github.com/lechatn/hangman v0.0.0-20231116120024-70ac60b6253d
