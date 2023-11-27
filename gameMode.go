@@ -1,10 +1,11 @@
 package hangmanweb
 
-import ("net/http"
-		"text/template"
-		"github.com/lechatn/hangman"
-		"fmt")
-
+import (
+	"fmt"
+	"github.com/lechatn/hangman"
+	"net/http"
+	"text/template"
+)
 
 func Gamemode(w http.ResponseWriter, r *http.Request) {
 	tGamemode, err := template.ParseFiles("template/game_mode.html")

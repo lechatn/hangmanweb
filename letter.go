@@ -1,12 +1,13 @@
 package hangmanweb
 
-import ( "net/http"
-		 "text/template"
-		 "fmt"
-		 "github.com/lechatn/hangman"
-		 "strconv"
-		 "strings"
-		 )
+import (
+	"fmt"
+	"github.com/lechatn/hangman"
+	"net/http"
+	"strconv"
+	"strings"
+	"text/template"
+)
 
 func Letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string, name_mode string, score int, win_series int) (string, int, string, int, int) {
 	tletter, err := template.ParseFiles("template/letter.html")

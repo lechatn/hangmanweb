@@ -1,11 +1,10 @@
 package hangmanweb
 
-import ( "net/http"
-		 "text/template"
-		 "fmt"
-		 )
-
-
+import (
+	"fmt"
+	"net/http"
+	"text/template"
+)
 
 func Index(w http.ResponseWriter, r *http.Request) (string, int, int) {
 	score := 0
@@ -52,7 +51,12 @@ func PrintHtml(display string, life int, score int) (string, string, string) {
 	return htmlContent, htmlContent2, htmlContent4
 }
 
-func CreateData(htmlContent string, htmlContent2 string, htmlContent3 string, htmlContent4 string) (struct { Display string; Life string; Game_mode string; Score string }) {
+func CreateData(htmlContent string, htmlContent2 string, htmlContent3 string, htmlContent4 string) struct {
+	Display   string
+	Life      string
+	Game_mode string
+	Score     string
+} {
 	data := struct {
 		Display   string
 		Life      string

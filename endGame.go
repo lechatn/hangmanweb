@@ -1,9 +1,10 @@
 package hangmanweb
 
-import ("net/http"
-		"text/template"
-		"fmt")
-
+import (
+	"fmt"
+	"net/http"
+	"text/template"
+)
 
 func Win(w http.ResponseWriter, r *http.Request, word string, Failed_letter string, life int, score int, win_series int) (int, int) {
 	tWin, err := template.ParseFiles("template/win.html")
@@ -22,7 +23,6 @@ func Win(w http.ResponseWriter, r *http.Request, word string, Failed_letter stri
 		Score: htmlContent2,
 	}
 	tWin.Execute(w, data)
-
 	return score, win_series
 }
 
@@ -40,8 +40,6 @@ func Loose(w http.ResponseWriter, r *http.Request, word string, Failed_letter st
 		Word:  htmlContent,
 		Score: htmlContent2,
 	}
-
 	tWin.Execute(w, data)
-
 	return score
 }
