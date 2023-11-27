@@ -8,13 +8,13 @@ import (
 
 func Index(w http.ResponseWriter, r *http.Request) (string, int, int) {
 	score := 0
-	win_series := 0
+	win_series := 1
 	Failed_letter := ""
-	tIndex, err := template.ParseFiles("template/index.html")
+	tIndex, err := template.ParseFiles("template/index.html") // Parse the html file
 	if err != nil {
 		panic(err)
 	}
-	tIndex.Execute(w, nil)
+	tIndex.Execute(w, nil) // Execute the html file
 	return Failed_letter, score, win_series
 }
 
@@ -23,7 +23,7 @@ func Regle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	tRegles.Execute(w, nil)
+	tRegles.Execute(w, nil) 
 }
 
 func Restart(w http.ResponseWriter, r *http.Request) string {

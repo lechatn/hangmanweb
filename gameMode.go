@@ -16,41 +16,41 @@ func Gamemode(w http.ResponseWriter, r *http.Request) {
 }
 
 func Gamemode_french(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
-	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt"))
-	display := hangman.DisplayWord(word)
-	life := 10
-	game_mode := "/gamemode_french"
-	tGamemode, err := template.ParseFiles("template/game.html")
-	htmlContent3 := fmt.Sprintf("%s", "French")
+	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/words.txt"))	// Choose a random word from the french word list
+	display := hangman.DisplayWord(word) // Display the word with underscores
+	life := 10 // Init the life to 10
+	game_mode := "/gamemode_french" // Define the game mode to french
+	tGamemode, err := template.ParseFiles("template/game.html") // Parse the html file
+	htmlContent3 := fmt.Sprintf("%s", "French") // Define the htmlContent for the display in the html file
 	htmlContent, htmlContent2, htmlContent4 := PrintHtml(display, life, score)
-	data := CreateData(htmlContent, htmlContent2, htmlContent3, htmlContent4)
+	data := CreateData(htmlContent, htmlContent2, htmlContent3, htmlContent4) // Create the data for the html file
 	if err != nil {
 		panic(err)
 	}
-	tGamemode.Execute(w, data)
+	tGamemode.Execute(w, data) // Execute the html file
 	return display, life, word, game_mode, htmlContent3
 }
 
 func Gamemode_english(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
-	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/english.txt"))
-	display := hangman.DisplayWord(word)
-	life := 10
-	game_mode := "/gamemode_english"
-	tGamemode, err := template.ParseFiles("template/game.html")
-	htmlContent3 := fmt.Sprintf("%s", "English")
-	htmlContent, htmlContent2, htmlContent4 := PrintHtml(display, life, score)
+	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/english.txt")) 
+	display := hangman.DisplayWord(word) 
+	life := 10 
+	game_mode := "/gamemode_english" 
+	tGamemode, err := template.ParseFiles("template/game.html") 
+	htmlContent3 := fmt.Sprintf("%s", "English") 
+	htmlContent, htmlContent2, htmlContent4 := PrintHtml(display, life, score) 
 	data := CreateData(htmlContent, htmlContent2, htmlContent3, htmlContent4)
 	if err != nil {
 		panic(err)
 	}
-	tGamemode.Execute(w, data)
+	tGamemode.Execute(w, data) 
 	return display, life, word, game_mode, htmlContent3
 }
 
 func Gamemode_german(w http.ResponseWriter, r *http.Request, score int) (string, int, string, string, string) {
-	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/german.txt"))
+	word := hangman.RandomWord(hangman.LoadWords("base_de_donnée/german.txt")) 
 	display := hangman.DisplayWord(word)
-	life := 10
+	life := 10 
 	game_mode := "/gamemode_german"
 	tGamemode, err := template.ParseFiles("template/game.html")
 	htmlContent3 := fmt.Sprintf("%s", "German")
