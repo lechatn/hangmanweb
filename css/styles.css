@@ -7,7 +7,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+  color : white;
+  opacity: 0.9;
   /* Dark mode colors and gradient */
   background: #121212; /* Fallback for browsers that don't support gradients */
   background: linear-gradient(
@@ -440,7 +441,7 @@ text-align: center;
   width: 100%;
 }
 
-.category-button span {
+.category-button a {
   text-align: center;
   text-decoration: none;
   width: 100%;
@@ -453,7 +454,7 @@ text-align: center;
   transition: all 0.3s ease-in-out;
 }
 
-.category-button:hover span {
+.category-button:hover a {
   color: #183153;
   animation: scaleUp 0.3s ease-in-out;
 }
@@ -601,7 +602,36 @@ a#W.button {
   outline: none;
 }
 
-/* Add this to your existing styles.css file or in a style tag in the head of your HTML file */
+
+.score {
+  width: 130px;
+  height: 50px; /* Augmentez la hauteur pour voir si le texte se centre correctement */
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border-radius: 9px;
+  background: #FFD401;
+  color: #1a1a1a;
+  border: none;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.4s;
+
+  /* Ajout des propriétés pour l'alignement à droite */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+.score:hover {
+  box-shadow: 3px 2px 28px -7px #C3D900;
+}
+
+.score:active {
+  transform: scale(0.97);
+  box-shadow: 3px 2px 28px -5px #C3D900;
+}
 
 .restart-button {
   /* Add styles specific to the restart button */
@@ -614,7 +644,7 @@ a#W.button {
   border-radius: 5px;
   text-decoration: none;
   color: #fff;  /* Set text color to white */
-  padding: 20px 30px;  /* Increase padding for a thicker button */
+  padding: 10px 20px;  /* Increase padding for a thicker button */
   border-radius: 8px;  /* Optional: Adjust border-radius for rounded corners */
   background: #183153;
   font-family: "Montserrat", sans-serif;
@@ -673,11 +703,6 @@ a#W.button {
   100% {
     transform: scale(1);
   }
-}
-
-/* Style for the Hangman title */
-.hangman-title {
-  color:#183153 ;
 }
 
 
