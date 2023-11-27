@@ -1,22 +1,23 @@
 package hangmanweb
 
-import ( "net/http"
-		 "text/template"
-		 "fmt"
-		 "github.com/lechatn/hangman"
-		 "strconv"
-		 "strings"
-		 )
+import (
+	"fmt"
+	"github.com/lechatn/hangman"
+	"net/http"
+	"strconv"
+	"strings"
+	"text/template"
+)
 
 func Letter(w http.ResponseWriter, r *http.Request, word string, life int, Display string, Failed_letter string, game_mode string, name_mode string, score int, win_series int) (string, int, string, int, int) {
-	tletter, err := template.ParseFiles("template/letter.html")
-	IndexHangman := 0
+	tletter, err := template.ParseFiles("template/letter.html") // Parse the html file
+	IndexHangman := 0 
 	if err != nil {
 		panic(err)
 	}
-	letter := r.URL.Query().Get("id")
+	letter := r.URL.Query().Get("id") // Get the letter choosen by the id
 	Display, life, IndexHangman, Failed_letter = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
-	htmlContent := fmt.Sprintf("%s", Display)
+	htmlContent := fmt.Sprintf("%s", Display) // Define the htmlContent for the display in the html file
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", word)
 	htmlContent4 := ""
@@ -24,17 +25,16 @@ func Letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent6 := "static/images/hangman-" + strconv.Itoa(10-life) + ".png"
 	htmlContent7 := fmt.Sprintf("%s", name_mode)
 	htmlContent8 := fmt.Sprintf("%d", score)
-	fmt.Println(Failed_letter)
-	if word == Display {
-		score, win_series = Win(w, r, word, Failed_letter, life, score, win_series)
+	if word == Display { // If the word is found
+		score, win_series = Win(w, r, word, Failed_letter, life, score, win_series) // Execute the function win
 		return Display, life, Failed_letter, score, win_series
 	}
-	if life == 0 {
-		score = Loose(w, r, word, Failed_letter, life, score)
-		win_series = 0
+	if life == 0 { // If there is no more life
+		score = Loose(w, r, word, Failed_letter, life, score) // Execute the function loose
+		win_series = 1 // Reset the win series to 1
 		return Display, life, Failed_letter, score, win_series
 	}
-	data := struct {
+	data := struct { // Create the data for the html file
 		Display       string
 		Life          string
 		Word          string
@@ -53,6 +53,6 @@ func Letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 		Game_mode:     htmlContent7,
 		Score:         htmlContent8,
 	}
-	tletter.Execute(w, data)
+	tletter.Execute(w, data) // Execute the html file
 	return Display, life, Failed_letter, score, win_series
 }
