@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman Game</title>
     <link rel="icon" type="image/png" href="./static/potence.png">
-    <link rel="stylesheet" href="./static/styles.css">
+    <link rel="stylesheet" href="./static/css/styles.css">
 </head>
 <body>
     <div id="game" >
@@ -18,7 +18,10 @@
         <br>
         <p >You have {{.Life}} lifes</p>
         <p >Letters you already try : </p>
-        <img src="/static/images/hangman-0.png" alt="Description de l'image" width="300" height="200">
+        <div class="score">
+            <p >Your score : {{.Score}}</p>
+        </div>
+        <img src="/static/images/hangman-0.png" alt="Description de l'image" width="350" height="350">
         <form action="/letter" method="post">
             <label for="letterInput">Choose a letter : </label>
             <div class="keyboard">
