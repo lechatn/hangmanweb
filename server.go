@@ -2,12 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/lechatn/hangman"
 	"net/http"
 	"strconv"
 	"strings"
 	"text/template"
-
-	"github.com/lechatn/hangman"
 )
 
 func main() {
@@ -68,7 +67,7 @@ func main() {
 	http.HandleFunc("/regle", func(w http.ResponseWriter, r *http.Request) {
 		regle(w, r)
 	})
-	http.HandleFunc("/contact", contact)
+	http.HandleFunc("/contact", contact) 
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil)
 }
@@ -97,7 +96,7 @@ func letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 	htmlContent6 := "static/images/hangman-" + strconv.Itoa(10-life) + ".png"
 	htmlContent7 := fmt.Sprintf("%s", game_mode)
 	if word == Display {
-		win(w, r, word)
+		win(w, r,word)
 		return Display, life, Failed_letter
 	}
 	if life == 0 {
@@ -467,9 +466,9 @@ func gamemode_french_citys(w http.ResponseWriter, r *http.Request) (string, int,
 }
 
 func contact(w http.ResponseWriter, r *http.Request) {
-	tcontact, err := template.ParseFiles("template/contact.html")
-	if err != nil {
-		panic(err)
-	}
-	tcontact.Execute(w, nil)
+    tcontact, err := template.ParseFiles("template/contact.html")
+    if err != nil {
+        panic(err)
+    }
+    tcontact.Execute(w, nil)
 }
