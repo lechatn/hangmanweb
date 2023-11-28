@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"hangmanweb"
+	"net/http"
 )
 
 func main() {
@@ -77,4 +77,3 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	http.ListenAndServe(":8080", nil) // Listen port 8080
 }
-
