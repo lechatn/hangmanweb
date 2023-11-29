@@ -16,7 +16,7 @@ func Letter(w http.ResponseWriter, r *http.Request, word string, life int, Displ
 		panic(err)
 	}
 	letter := r.URL.Query().Get("id") // Get the letter choosen by the id
-	Display, life, IndexHangman, Failed_letter = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
+	Display, life, IndexHangman, Failed_letter,_ = hangman.IsPresent(strings.ToUpper(letter), word, Display, life, IndexHangman, Failed_letter)
 	htmlContent := fmt.Sprintf("%s", Display) // Define the htmlContent for the display in the html file
 	htmlContent2 := fmt.Sprintf("%d", life)
 	htmlContent3 := fmt.Sprintf("%s", word)
