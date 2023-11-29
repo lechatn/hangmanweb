@@ -1,4 +1,4 @@
-module github.com/lechatn/hangman-web
+module github.com/lechatn/hangmanweb
 
 go 1.13
 
